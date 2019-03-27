@@ -1,0 +1,49 @@
+/**
+ * _logo-area.scss (UTF-8)
+ *
+ * Copyright (c) 2016 Sami Holck <sami.holck@gmail.com>
+ */
+.error-page .sphp-logo-area {
+  background: $error-bg;
+}
+.sphp-logo-area {
+  
+  background-color: $white;
+  background-image: url('/samiholck/pics/pinstripe.png');
+  background-repeat: repeat;
+  background-position: top left;
+  
+  margin-bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  .logo {  
+    margin: rem-calc(10);
+    list-style: none;
+  }
+  .icon-col {
+    div.sphp-brand-links {
+      float:right;
+    }
+    a.sphp-brand-link {
+      @include breakpoint(small) {
+        display: none;
+      }
+      @include breakpoint(medium) {
+        border: solid 1px #444;
+        @include border-radius(8px);
+        @include opacity(.8);
+        @include shadow();
+        &:hover {
+          border-color: #111;
+          @include opacity(1);
+          @include shadow();
+        }
+        display: inline-block;
+        font-size: rem-calc(30);
+        width: rem-calc(50);
+        height: rem-calc(50);
+        line-height: rem-calc(50);
+        margin-right: 5px;
+      }
+    } 
+  }
+}

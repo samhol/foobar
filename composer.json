@@ -1,0 +1,52 @@
+{
+  "name": "sami_holck/foobar",
+  "homepage": "http://foobar.samiholck.com/",
+  "description": "Test environment",
+  "keywords": ["PHP", "HTML5", "WEB 2.0", "UI"],
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Sami Holck",
+      "email": "sami.holck@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "tovic/parsedown-extra-plugin",
+        "version": "1.0",
+        "source": {
+          "url": "https://github.com/tovic/parsedown-extra-plugin",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "sepia/po-parser": ">=5",
+    "imagine/imagine": ">=0.7",
+    "erusev/parsedown-extra": ">=0.7.0",
+    "tovic/parsedown-extra-plugin": "*",
+    "geshi/geshi": "^1",
+    "jdorn/sql-formatter": ">=1.2",
+    "gajus/dindent": ">=2.0",
+    "zendframework/zend-cache": "*",
+    "zendframework/zend-config": "*",
+    "zendframework/zend-i18n": "*",
+    "zendframework/zend-paginator": "*",
+    "zendframework/zend-mail": "*",
+    "symfony/yaml": ">=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sphp\\": "sphp/php/Sphp",
+      "Sphp\\Samiholck\\": "samiholck/classes"
+    },
+    "psr-0": {
+      "": "vendor/tovic/parsedown-extra-plugin"
+    }
+  }
+}

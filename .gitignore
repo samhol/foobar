@@ -74,3 +74,10 @@ typings/
 
 # FuseBox cache
 .fusebox/
+/nbproject/private/
+
+/vendor/
+/nbproject/
+composer.lock
+package-lock.json
+

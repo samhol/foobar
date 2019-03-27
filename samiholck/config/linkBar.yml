@@ -1,0 +1,14 @@
+## linkbar links
+---
+- href: '/'
+  icon: fas fa-home
+  text: Home
+- href: '/who'
+  icon: far fa-question-circle
+  text: Who am I
+- href: '/calendar'
+  icon: fas fa-calendar
+  text: Calendar
+- href: '/why'
+  icon: far fa-question-circle
+  text: Why all this

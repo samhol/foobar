@@ -1,0 +1,9 @@
+## YAML Template.
+---
+  receiver: sami.holck@gmail.com
+  form-address: contact_form@samiholck.com
+  auto-response: 
+    from: sami.holck@samiholck.com
+    subject: Thank you for your message
+    body: I will get back to you as soon as possible
+  
