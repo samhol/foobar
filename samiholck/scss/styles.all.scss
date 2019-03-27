@@ -1,14 +1,22 @@
 
 @charset "UTF-8";
 
+$sphp-menu-arrow-size: 5px;
+$sphp-menu-arrow-color: rgba(#FAA523, .6); 
+$sphp-menu-border-color: rgba(#FAA523, .6);
+$sphp-menu-background-color: #222; 
+$sphp-menuitem-background-color: #222; 
+$sphp-menuitem-color: #fff;
+$sphp-menuitem-color-active: #efefef;
+$sphp-menuitem-font-color: #f4f4f4;
+$sphp-menuitem-font-color-active: #ffffff;
 @import url('https://fonts.googleapis.com/css?family=Mina|Roboto');
 $highlight-color: #FAA523;
+@import "../../sphp/scss/functions/functions"; 
 @import "settings";
 @import "../../node_modules/foundation-sites/scss/foundation";
 
-//@include foundation-everything($prototype: true);
-//@include foundation-grid;
-
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic%7cSource+Code+Pro:400,500,600,700%7cOpen+Sans:400italic,600italic,700italic,400,700,600);
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
@@ -36,7 +44,7 @@ $highlight-color: #FAA523;
 @include foundation-media-object;
 //@include foundation-off-canvas;
 @include foundation-orbit;
-//@include foundation-pagination;
+@include foundation-pagination;
 @include foundation-progress-bar;
 //@include foundation-slider;
 @include foundation-sticky;
@@ -51,18 +59,34 @@ $highlight-color: #FAA523;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 
-@import "../../sphp/scss/sphp.all"; 
 @import "../../sphp/scss/vendor/vendors"; 
 @import "../../sphp/scss/app/apps";
-//@import "../../sphp/scss/manual/manual";
+
+@include sphp-icon-buttons();
+@include sphp-error-handling-callouts;
+@include sphp-cookie-banner;
+@include sphp-syntax-highlighting-modules;
+@include sphp-calendar-modules;
+//@include sphp-sidenav;
+@include sphp-foundation-addons;
+@include sphp-menus();
+@include sphp-table-modules();
+@include sphp-geshi();
+@include sphp-forms();
+
+@include sphp-code-example-accordion();
 
 @import "site/main-content";
 
 body {
-  
+
   background-color: rgba(#fff, .7);
   background-image: url('/samiholck/pics/gridme.png');
   background-repeat: repeat;
   background-position: top left;
   //background: rgba(255, 255, 255, 0.75);
+
+  background-color: #ddd;
+  background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

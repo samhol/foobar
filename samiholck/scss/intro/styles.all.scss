@@ -72,6 +72,7 @@ $clean-hero-slider-accent: $warning-color;
 .clean-hero-slider {
   margin-top: auto;
   margin-bottom: auto;
+ min-height: 100vh;
   .orbit-caption {
     width: auto;
     height: auto;

@@ -58,7 +58,7 @@ $descriptions->appendMdFile("$mdPath/c.php")->addCssClass('c');
 $descriptions->appendMdFile("$mdPath/cpp.php")->addCssClass('cpp');
 $descriptions->appendMdFile("$mdPath/ps.php")->addCssClass('ps');
 
-echo '<div class="grid-x sphp tech-carousel-container"><div class="cell auto">' . $carousel . $descriptions . '</div></div>';
+echo '<div class="grid-x sphp"><div class="cell auto tech-carousel-container">' . $carousel . $descriptions . '</div></div>';
 
 
 

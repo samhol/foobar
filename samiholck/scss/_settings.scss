@@ -71,13 +71,14 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #434343,
+  primary: #333,
   secondary: #1779ba,
   success: #3adb76,
   warning: #ffae00,
   alert: #cc4b37,
-  devicon: #60be86,
-  fontawesome: #228ae6,
+  menu-highlight: #FAA523,
+  menu-arrow: $sphp-menu-arrow-color,
+  menu-background: #333,
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;

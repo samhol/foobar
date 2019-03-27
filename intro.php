@@ -30,11 +30,10 @@ use Sphp\Html\Head\Link;
 $html->enableSPHP()
         ->setViewport('width=device-width, initial-scale=1.0')
         ->useFontAwesome();
-$head->setBaseAddr('http://www.samiholck.com/', '_self');
 
-$head->setCssSrc('http://www.samiholck.com/css/intro/styles.all.css');
-$head->setCssSrc('https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css');
-$head->setCssSrc('https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css');
+$head->set(Link::stylesheet('http://www.samiholck.com/css/intro/styles.all.css'));
+$head->set(Link::stylesheet('https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css'));
+$head->set(Link::stylesheet('https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css'));
 
 $head->set(Link::appleTouchIcon('/apple-touch-icon.png'));
 $head->set(Link::icon('/favicon-32x32.png', '32x32'));
@@ -63,7 +62,7 @@ Document::html()->startBody();
 $cacheSuffix = str_replace(['.', '/'], ['-', ''], $redirect) . "-cache";
 ?>
 
-<div class="orbit clean-hero-slider" role="region" aria-label="Who is Sami Holck" data-orbit>
+<div class="orbit clean-hero-slider" role="region" aria-label="Favorite Space Pictures" data-orbit>
   <div class="orbit-wrapper">
     <div class="orbit-controls">
       <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
@@ -72,53 +71,40 @@ $cacheSuffix = str_replace(['.', '/'], ['-', ''], $redirect) . "-cache";
     <ul class="orbit-container">
       <li class="orbit-slide">
         <figure class="orbit-figure">
-          <img class="orbit-image" src="intro/burning.jpg" alt="Falmes in Mellilä">
+          <img class="orbit-image" src="//lorempixel.com/800/350/" alt="image alt text">
           <figcaption class="orbit-caption">
-            <h3>Burning desire</h3>
-            <p>I do WEB desing related things almost every day. Web is my passion 
-              and hobby and hopefully also a work soon!</p>
-            <a href="#" class="button yellow">Contact me</a>
+            <h3>Lorem Ipsum Etiam</h3>
+            <p>Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.</p>
+            <a href="#" class="button yellow">Mattis Elit</a>
           </figcaption>
         </figure>
       </li>
       <li class="orbit-slide">
         <figure class="orbit-figure">
-          <img class="orbit-image" src="intro/fullstack.jpg" alt="Summer night in Mellilä">
+          <img class="orbit-image" src="//lorempixel.com/800/350/" alt="image alt text">
           <figcaption class="orbit-caption">
-            <h3>Full Stack Web developer</h3>
-            <p>I am comfortable working with all the technologies required to get 
-              a WEB application to a finished product. I am familiar with all the 
-              layers of WEB development... and I have fair knowledge of Networking, 
-              Databases, Security etc....</p>
-            <div class="button-group">
-              <a href="#" class="button yellow"><i class="fab fa-php"></i> php.net</a>
-              <a href="#" class="button yellow">w3c.org</a>
-              <a href="#" class="button yellow"><i class="fab fa-js-square"></i> javascript.com</a>
-            </div>
+            <h3>Ipsum Ornare Ultricies</h3>
+            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="#" class="button yellow">Egestas Amet</a>
           </figcaption>
-        </figure> 
+        </figure>
       </li>
       <li class="orbit-slide">
         <figure class="orbit-figure">
-          <img class="orbit-image" src="intro/project.jpg" alt="Painting the barn">
+          <img class="orbit-image" src="//lorempixel.com/800/350/" alt="image alt text">
           <figcaption class="orbit-caption">
-            <h3>Projects</h3>
-            <p>I have been working with several WEB sites and WEB related projects, like...</p>
-            <div class="button-group">
-              <a href="http:www.samiholck.com/" class="button yellow">GitHub</a>
-              <a href="http:www.samiholck.com/" class="button yellow">samiholck.com</a>
-              <a href="http:playground.samiholck.com/" class="button yellow">SPHPlayground</a>
-              <a href="http://raisionveneseura.fi/" class="button yellow">Raision veneseura</a>
-            </div>
+            <h3>Malesuada Parturient</h3>
+            <p>Fusce dapibus, tellus ac cursus commodo, sit amet risus. Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam sit amet non magna.</p>
+            <a href="#" class="button yellow">Sollicitudin</a>
           </figcaption>
         </figure>
       </li>
     </ul>
   </div>
   <nav class="orbit-bullets">
-    <button class="is-active" data-slide="0"><span class="show-for-sr">Burning Desire</span></button>
-    <button data-slide="1"><span class="show-for-sr">Full Stack Web Developer</span></button>
-    <button data-slide="2"><span class="show-for-sr">Projects</span></button>
+    <button class="is-active" data-slide="1"><span class="show-for-sr">Lorem Ipsum Etiam</span></button>
+    <button data-slide="2"><span class="show-for-sr">Lorem Ipsum Etiam</span></button>
+    <button data-slide="3"><span class="show-for-sr">Lorem Ipsum Etiam</span></button>
   </nav>
 </div>
 
