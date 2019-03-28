@@ -65,4 +65,4 @@ $row->append($bGroup)->addCssClass('text-center');
 $form->append($row);
 
 $form->setAttribute('data-validators', 'capV.setValid');
-echo $form. ReCaptcha::createScripts();
+echo $form . ReCaptcha::createScripts();

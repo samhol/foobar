@@ -22,14 +22,15 @@ $highlight-color: #FAA523;
   margin-top: rem-calc(0);
   &.sitemap-container {
     //margin-top: rem-calc(0);
-    background-color: #000;
+    background-color: #1c1a12; 
     border-top: 2px solid $highlight-color;
     border-bottom: 1px solid $highlight-color;
-    background-image: url('http://playground.samiholck.com/manual/svg/svg.php?name=human-skull&opacity=0.2'), url('http://data.samiholck.com/images/parquet/black.jpg');
+    background-image: url('http://playground.samiholck.com/manual/svg/svg.php?name=human-skull&opacity=0.2'), url("/samiholck/pics/black_wood.jpg");
     background-repeat: no-repeat,repeat;
     background-position: center center,0 0;
     .sitemap { 
       //@include grid-row();
+
       padding: rem-calc(60) 0;
       /*@include breakpoint(small) {
         margin-left: rem-calc(17);
@@ -108,11 +109,15 @@ $highlight-color: #FAA523;
     }
   }
   &.social-container {
-    background-color: $dark-gray;
+    background-color: #777;
     border-top: 1px solid #444;
     border-bottom: 1px solid $highlight-color;
 
     .social {
+      .thumbnail {
+        border-radius: 50%;
+        overflow: hidden;
+      }
       @include grid-row();
       color: #fafafa;
       padding: rem-calc(20 0 30 0);
@@ -162,10 +167,10 @@ $highlight-color: #FAA523;
   }
   &.copyright-details-container {
     border-top: 1px solid #222;
-    background-color: $white;
-    background-image: url('http://data.samiholck.com/images/parquet/dim-white.jpg');
+    background-color: rgba(#FAA523, .4);
+    background-image: url("/samiholck/pics/cartographer.png");
     background-repeat: repeat;
-    background-position: top left;
+    background-position: 0 0;
     color:$dark-gray !important;
     text-align: center;
     p {

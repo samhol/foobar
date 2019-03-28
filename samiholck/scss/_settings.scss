@@ -251,7 +251,7 @@ $accordionmenu-submenu-toggle-background: null;
 $accordion-submenu-toggle-border: $accordionmenu-border;
 $accordionmenu-submenu-toggle-width: 40px;
 $accordionmenu-submenu-toggle-height: $accordionmenu-submenu-toggle-width;
-$accordionmenu-arrow-size: 6px;
+$accordionmenu-arrow-size: 5px;
 
 // 9. Badge
 // --------
@@ -399,7 +399,7 @@ $drilldown-background: $white;
 $drilldown-submenu-padding: $drilldown-padding;
 $drilldown-submenu-background: $white;
 $drilldown-arrow-color: $highlight-color;
-$drilldown-arrow-size: 6px;
+$drilldown-arrow-size: 5px;
 
 // 17. Dropdown
 // ------------
@@ -422,7 +422,7 @@ $dropdown-sizes: (
 
 $dropdownmenu-arrows: true;
 $dropdownmenu-arrow-color: $highlight-color;
-$dropdownmenu-arrow-size: 6px;
+$dropdownmenu-arrow-size: 5px;
 $dropdownmenu-arrow-padding: 1.5rem;
 $dropdownmenu-min-width: 200px;
 $dropdownmenu-background: $white;
