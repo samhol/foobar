@@ -8,32 +8,34 @@ use Sphp\Html\Foundation\Sites\Forms\GridForm;
 use Sphp\Html\Foundation\Sites\Grids\BasicRow;
 use Sphp\Html\Foundation\Sites\Buttons\ButtonGroup;
 
+$form = new GridForm();
+$form->validation(true);
+$form->setMethod('post');
+$form->setAction('/samiholck/contact-form/process.php');
+
 $email = ValidableInlineInput::text('email');
 $email->setRequired(true);
-$email->setLeftInlineLabel('<i class="fas fa-envelope"></i>');
+$email->setLeftInlineLabel('<i class="fas fa-at"></i>');
 $email->setLabel('Email address');
 $email->setPlaceholder('somebody@email.com');
 $email->setErrorMessage('Email address is required!');
 $email->setRequired(true);
 
 $fullname = ValidableInlineInput::text('name');
-//$fullname->setRequired(true);
 $fullname->setLeftInlineLabel('<i class="fa fa-user"></i>');
-$fullname->setLabel('Full name');
-$fullname->setPlaceholder('Full Name');
-//$fullname->setErrorMessage('First name is required!');
-//$fullname->setRequired(true);
+$fullname->setLabel('Name');
+$fullname->setPlaceholder('Name or Company');
 
-$lname = ValidableInlineInput::text('lname');
-$lname->setRequired(true);
-$lname->setLeftInlineLabel('<i class="fa fa-user"></i>');
-$lname->setLabel('Last name');
-$lname->setPlaceholder('Last name');
-$lname->setErrorMessage('Last name is required!');
-$lname->setRequired(true);
+
+$phone = ValidableInlineInput::text('phone');
+$phone->setLeftInlineLabel('<i class="fas fa-phone"></i>');
+$phone->setLabel('Phone number');
+$phone->setPlaceholder('+358 44 298 6738');
+$phone->setRequired(true);
+
 
 $message = ValidableInlineInput::textarea('message');
-$message->setLabel('Message');
+$message->setLabel('Message body');
 $message->setPlaceholder('Message body . . .');
 $message->setRows(6);
 $message->setErrorMessage('A message is required');
@@ -41,20 +43,22 @@ $message->setRequired(true);
 //$message->setLeftInlineLabel('<i class="fas fa-car"></i>');
 
 
-$messageTitle = ValidableInlineInput::text('title');
+$messageTitle = ValidableInlineInput::text('subject');
 $messageTitle->setRequired(true);
 $messageTitle->setLeftInlineLabel('<i class="fas fa-heading"></i>');
 $messageTitle->setLabel('Message title');
 $messageTitle->setPlaceholder('Message title');
 $messageTitle->setErrorMessage('Message title is required');
 
-$form = new GridForm();
-$form->validation(true);
 
 $nameRow = new BasicRow();
-$nameRow->appendCell($email)->small(12)->medium(6);
-$nameRow->appendCell($fullname)->small(12)->medium(6);
+$nameRow->appendCell($fullname)->small(12);
 $form->append($nameRow);
+
+$contactRow = new BasicRow();
+$contactRow->appendCell($email)->small(12)->medium(6);
+$contactRow->appendCell($phone)->small(12)->medium(6);
+$form->append($contactRow);
 
 
 $carRow = new BasicRow();
@@ -64,13 +68,18 @@ $form->append($carRow);
 
 $form->appendHiddenVariable('hidden1', 'I am hidden!');
 
-$buttonRow = new BasicRow();
 $buttons = new ButtonGroup();
-$buttons->appendSubmitter('Submit')->addCssClass('success');
+$buttons->appendSubmitter('<i class="fas fa-envelope"></i> Submit')->addCssClass('success');
 $buttons->appendResetter('Reset form')->addCssClass('alert');
 $buttons->setExtended();
+
+$buttonRow = new BasicRow();
 $buttonRow->appendCell($buttons);
+
+
 $form->append($buttonRow);
 $form->liveValidate();
 echo $form;
-
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';

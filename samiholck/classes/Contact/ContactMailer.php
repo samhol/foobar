@@ -1,8 +1,11 @@
 <?php
 
 /**
- * ContactMailer.php (UTF-8)
- * Copyright (c) 2017 Sami Holck <sami.holck@gmail.com>
+ * SPHPlayground Framework (http://playgound.samiholck.com/)
+ *
+ * @link      https://github.com/samhol/SPHP-framework for the source repository
+ * @copyright Copyright (c) 2007-2019 Sami Holck <sami.holck@gmail.com>
+ * @license   https://opensource.org/licenses/MIT The MIT License
  */
 
 namespace Sphp\Samiholck\Contact;
@@ -13,7 +16,6 @@ use Sphp\Data\ContactMessage;
  * 
  *
  * @author  Sami Holck <sami.holck@gmail.com>
- * @since   2017-03-11
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
@@ -48,9 +50,9 @@ class ContactMailer {
   /**
    * 
    * @param  ContactMessage $data
-   * @return self for a fluent interface
+   * @return $this for a fluent interface
    */
-  public function sendMessage(ContactMessage $data) {
+  public function sendMessage(ContactData $data) {
     $this->mailer
             ->setFrom($this->sender)
             ->setTo($this->receiver)
@@ -63,9 +65,9 @@ class ContactMailer {
   /**
    * 
    * @param  ContactData $data
-   * @return self for a fluent interface
+   * @return $this for a fluent interface
    */
-  public function replyTo(ContactData $data) {
+  protected function replyTo(ContactData $data) {
     $this->getMessage()->setFrom($this->sender);
     $this->getMessage()->addTo($data->getEmail());
     $this->getMessage()->setSubject("Thank you for your message");
@@ -80,25 +82,23 @@ class ContactMailer {
    * @param  ContactMessage $data
    * @return string mail body as a string
    */
-  public function createMailBody(ContactMessage $data): string {
+  protected function createMailBody(ContactData $data): string {
     $mailBody = "Message:\n";
     $mailBody .= $data->getMessage();
     $mailBody .= $this->createContacterData($data);
     return $mailBody;
   }
 
-  public function createContacterData(ContactMessage $data): string {
+  protected function createContacterData(ContactData $data): string {
     $output = '';
-    if ($data->getContacter() !== null) {
-      $person = $data->getContacter();
-      $output .= "\n\n----------------------\n";
-      $output .= "Contacter:\n";
-      $output .= "\n".$person->getFullname();
-      $output .= "\nemail:   ".$person->getEmail();
-      $output .= "\nphone:   ".$person->getPhonenumber();
-      $output .= "\naddress: ".$person->getAddress();
-      $output .= "\n----------------------\n";
+    $output .= "\n\n----------------------\n";
+    $output .= "Contacter:\n";
+    if (!empty($data->getName())) {
+      $output .= "\n" . $data->getName();
     }
+    $output .= "\nemail:   " . $data->getEmail();
+    $output .= "\nphone:   " . $data->getPhonenumber();
+    $output .= "\n----------------------\n";
     return $output;
   }
 

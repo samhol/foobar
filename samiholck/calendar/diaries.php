@@ -33,15 +33,38 @@ $basketball->dateRule()
         ->isBefore('2018-6-1')
         ->isNotOneOf("$year-4-30", "$year-5-1");
 $misc->insertLog($basketball);
-$basketball1 = RepeatingTask::from('20:30', '22:00');
-$basketball1->setDescription('Basketball at the School of Vaarniemi');
-$basketball1->dateRule()
+$klu = RepeatingTask::from('20:30', '22:00');
+$klu->setDescription('Basketball at the School of Vaarniemi');
+$klu->dateRule()
         ->isWeekly(1, 3)
         ->isAfter('2018-1-1')
         ->isBefore('2019-6-1')
         ->isNotBetween('2018-6-1', '2018-8-25')
         ->isNotOneOf("$year-4-30", "$year-5-1");
-$misc->insertLog($basketball1);
+
+$misc->insertLog($klu);
+
+$normaalikoulu = RepeatingTask::from('20:30', '22:00');
+$normaalikoulu->setDescription('Basketball at Normaalikoulu');
+$normaalikoulu->dateRule()
+        ->isWeekly(2)
+        ->isAfter('2018-1-9')
+        ->isBefore('2019-6-1')
+        ->isNotBetween('2018-12-15', '2019-1-6')
+        ->isNotOneOf("$year-4-30", "$year-5-1");
+
+$misc->insertLog($normaalikoulu);
+
+$edu = RepeatingTask::from('21:00', '22:30');
+$edu->setDescription('Basketball at Educarium');
+$edu->dateRule()
+        ->isWeekly(4)
+        ->isAfter('2018-1-9')
+        ->isBefore('2019-6-1')
+        ->isNotBetween('2018-12-15', '2019-1-6')
+        ->isNotOneOf("$year-4-30", "$year-5-1");
+
+$misc->insertLog($edu);
 
 $vaasa = new \Sphp\DateTime\Calendars\Diaries\Schedules\SingleTask('2018-7-19', '2018-7-21');
 $vaasa->setDescription('Trip to Vaasa');

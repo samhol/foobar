@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 require_once('../settings.php');
 
 $year = 2018;
-include '../../samiholck/pages/diaries.php';
+include '../../samiholck/calendar/diaries.php';
 
 $section = new DateInfoContentGenerator();
 $date = filter_input(INPUT_GET, 'date', FILTER_SANITIZE_STRING);

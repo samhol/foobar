@@ -1,0 +1,176 @@
+
+$background-path: '/introduction/pictures/';
+.intro {
+  .skip-button {
+    @include shadow();
+    @include border-radius(4px);
+    z-index: 999999;
+    display: block;
+    position:absolute;
+    right: 5px;
+    top: 5px;
+    background-color: rgba(#f33, .6);
+    margin: rem-calc(20);
+    font-weight: bold;
+    padding: rem-calc(5 10);
+    color: rgba(#fff, .8);
+    &:hover {
+      background-color: rgba(#f33, .8);
+      color: #fff;
+    }
+  }
+  .orbit-bullets {
+    display: none;
+
+    @include breakpoint(small) {
+      display: block;
+      margin-bottom: 0;
+      margin-top: -3rem;
+      background: none;
+    }
+
+    button {
+      width: 3rem;
+      height: 0.4rem;
+      border-radius: 0;
+      background-color: #fff;
+
+      &.is-active {
+        background-color: $burn-color;
+      }
+    }
+  }
+
+  button {
+    &:hover {
+      color: $burn-color;
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .orbit-container {
+    height: 100vh;
+
+    .orbit-slide {
+      height: 100vh;
+      .content {
+        @include border-radius(4px);
+        margin: rem-calc(20);
+        padding: rem-calc(20 20 40 20);
+        background-color: rgba(#000, .5);
+        color: #fff;
+        bottom: 50%;
+        @include breakpoint(small) {
+
+        }
+        @include breakpoint(medium) {
+          width: 80%;
+        }
+        @include breakpoint(large) {
+          width: 50%;
+        }
+        h1, h2, h3 {
+          font-size: rem-calc(30);
+          border-bottom: rgba($burn-color, .6) solid 2px;
+          small {
+            color: #eaeaea;
+          }
+        }
+        p {
+          padding-top: 1rem; 
+          padding-left: 1rem;
+        }
+        hr {
+          $grad: rgba($burn-color, .1) 0%, rgba($burn-color, .6) 50%, $burn-color 100%;
+          @include gradient(to right, $grad);
+        }
+        ul {
+          list-style: none; 
+          padding-left: 1rem;
+          li {
+            font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+            padding-left: .5rem;
+            a{
+              font-weight: bold;
+              color: #fff;
+              text-decoration: underline;
+            }
+            &:before {
+              content: "\2605";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+              color: rgba($burn-color, .6); /* Change the color */
+              font-weight: bold; /* If you want it to be bold */
+              display: inline-block; /* Needed to add space between the bullet and the text */ 
+              width: 1.5em; /* Also needed for space (tweak if needed) */
+              margin-left: -1.5em; /* Also needed for space (tweak if needed) */
+              margin-right: .5em; /* Also needed for space (tweak if needed) */
+            }
+          }
+        } 
+        .btns {
+          display: inline-block;
+        }
+        .btn {
+          @include border-radius(4px);
+          //@include shadow();
+          background-color: rgba($burn-color, .5); 
+          border: none; 
+          color: rgba(#eee, .8); 
+          margin-right: rem-calc(1);
+          display: inline-block;
+          //height: rem-calc(40);
+          @include breakpoint(small) {
+            padding: rem-calc(3 6 3 6);
+            font-size: rem-calc(20);
+            line-height: rem-calc(20);
+          }
+          @include breakpoint(medium) {
+            padding: rem-calc(4 7 4 7);
+            font-size: rem-calc(24);
+          }
+          &:hover {
+            color: rgba(#fff, 1); 
+            background-color: rgba($burn-color, .8);
+          }
+
+        }
+      }
+      &.who {
+        background: url(#{$background-path}project_1.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      &.cow {
+        background: url('#{$background-path}cow.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      &.burning {
+        background: url(#{$background-path}burning_1.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      &.fullstack {
+        background: url(#{$background-path}fullstack_1.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      &.projects {
+        background: url(#{$background-path}project.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    }
+  }
+}

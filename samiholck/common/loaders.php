@@ -26,8 +26,9 @@ $loadPage = function ($par, string $file = 'index') {
   ob_end_clean();
   echo "<main class=\"container $class\">$content</main>";
 };
-$loadCalendar = function ()use ($loadPage) {
-  $loadPage('',"calendar-app");
+$loadCalendar = function () {
+  $calCont = \Sphp\Stdlib\Filesystem::executePhpToString('samiholck/calendar/calendar.php');
+  echo "<main class=\"container calendar\">$calCont</main>";
 };
 $loadNotFound = function () {
   echo '<main class="container error">';

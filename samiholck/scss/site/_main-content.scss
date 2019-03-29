@@ -1,23 +1,13 @@
 
 @import "logo-area";
 @import "topbar";
-//@import "circle-graph/circle-graph";
-
-hr {
-  border: 0;
-  height: 1px;
-  $grad: black 0%,black 33%,black 66%,black 33%, black 0%;
-  @include gradient(to right, $grad);
-  //background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-
 
 .mainContent {
   @include breakpoint(small) {
-    border-top: solid 1px #888;
-    border-bottom:  solid 1px #888;
+    @include border-radius(3px);
+    border: solid 1px #888;
     padding: 0;// top right bottom left
-    margin: rem-calc(3 0 5 0); // top right bottom left
+    margin: rem-calc(10 0 10 0); // top right bottom left
   }
   @include breakpoint(medium) {
     border: solid 1px #888;
@@ -55,6 +45,13 @@ hr {
     }
     > p:not([class]), > blockquote:not([class]), > .button { 
       margin: rem-calc(5 25 15 25);
+    }
+
+    > hr {
+      border: 0;
+      height: 2px;
+      $grad: #fafafa 0%,#555 50%, #fafafa 100%;
+      @include gradient(to left, $grad);
     }
     > .button-group {
       margin: 0 auto;
@@ -106,20 +103,5 @@ hr {
 
 @import "contact-form";
 @import "footer";
-
 @import "back-to-top-button";
 
-.simple-popup {
-  z-index: 10000;
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: solid 1px #666;
-  background-color: #fafafa;
-  padding: rem-calc(10);
-  @include border-radius(3px);
-  &.error {
-    border-color: #f00;
-  }
-}
