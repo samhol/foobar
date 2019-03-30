@@ -1,0 +1,22 @@
+---
+menu:
+items:
+  - link: <i class="fas fa-home"></i><span class="show-for-sr">Back to home</span>
+    href: /
+    class: icon-link
+  - link: Who am I?
+    href: /who
+  - menu: Projects
+    items:
+    - separator: Current . . .
+    - link: SPHPlayground
+      href: http://playground.samiholck.com/
+    - link: Raision Veneseura
+      href: http://raisionvenseura.fi/
+    - separator: . . . Past <i class="fas fa-skull fa-pull-right"></i>
+    - link: Keijupäiväkodit
+      href: /archive/keiju
+    - link: Unikoris
+      href: /archive/unikoris
+    - link: DVD laboratorio
+      href: /archive/dvdlabra

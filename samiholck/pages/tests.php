@@ -1,56 +1,36 @@
 <?php
 
-namespace Sphp\Html\Foundation\Sites\Bars;
-?>
-<pre>
-  <?php
+namespace Sphp\Html\Foundation\Sites\Navigation;
 
-  use Sphp\Data\Person;
-  use Sphp\Stdlib\Parser;
+use Sphp\Html\Foundation\Sites\Navigation\MenuBuilder;
+use Sphp\Html\Foundation\Sites\Core\ThrowableCalloutBuilder;
+use Sphp\Stdlib\Parsers\Parser;
+use Sphp\Html\Media\Icons\IconButtons;
 
-$u = new \Sphp\Data\Person(['lname' => 'foo']);
-  $u['fname'] = 'Sami';
-  $u['address']['street'] = 'Rakuuna';
-  $u['dateOfBirth'] = new \DateTime();
-  unset($u['dateOfBirth']);
+$menuData = Parser::fromFile('samiholck/config/topbar.yml');
 
-  try {
-    //unset($u['foo']);
-  } catch (\Exception $ex) {
-    echo $ex;
-  }
-  echo $u;
-  $data = Parser::json()->decodeFromFile('http://data.samiholck.com/');
-  // print_r($data);
-  $person = new Person($data);
-  print_r($person->toArray());
-echo $person;
-  use Sphp\Html\Lists\Ul;
-  use Sphp\Html\Media\Icons\FontAwesome;
-  ?>
-</pre>
-<ul class="fa-ul">
-  <li>
-    <span class="fa-li"><?php FontAwesome::user('Name')->printHtml() ?></span> 
-    <strong><?php echo $person->getFullname() ?></strong></li>
-  <li>
-    <span class="fa-li"><?php FontAwesome::phone('phonenumber')->printHtml() ?></span> 
-    <?php echo $person->getPhonenumber() ?></li>
-  <li>
-    <span class="fa-li"><?php FontAwesome::envelope('Email address')->printHtml() ?></span> 
-    <?php echo $person->getEmail() ?></li>
-  <li>
-    <span class="fa-li"><?php FontAwesome::get('fa fa-map-marker-alt', 'Email address')->printHtml() ?></span> 
-    <?php echo $person->getAddress() ?></li>
-</ul>
-<?php
+try {
 
-use Sphp\Html\Media\Icons\BrandIcons;
+  $navi = new Bars\ResponsiveBar();
 
-$bi = new BrandIcons();
-$bi->setGithub('https://github.com/samhol', 'Gihub repository', 'github');
-$bi->appendFacebook('https://www.facebook.com/sami.holck', 'Facebook page', 'fb');
-$bi->appendGooglePlus('https://plus.google.com/u/0/107385804268206063694', 'Google plus page', 'google');
-$bi->appendTwitter('https://twitter.com/SPHPframework', 'Twitter page', 'twitter');
-$bi->printHtml();
-?>
+  $redirect = filter_input(INPUT_SERVER, 'REDIRECT_URL', FILTER_SANITIZE_URL);
+  $leftDrop = ResponsiveMenu::drilldownDropdown('medium');
+  $leftDrop->setOption('autoHeight', true);
+  $builder = new MenuBuilder(new MenuLinkBuilder(trim($redirect, '/')));
+  $builder->buildMenu($menuData, $leftDrop);
+  $navi->topbar()->left()->append($leftDrop);
+
+
+
+  $bi = new IconButtons();
+  $bi->github('https://github.com/samhol/', 'Gihub repositories');
+  $bi->facebook('https://www.facebook.com/sami.holck/', 'Facebook page');
+  $bi->twitter('https://twitter.com/samiholck', 'Twitter page');
+  $bi->addCssClass('smooth');
+
+  $navi->titleBar()->right()->append($bi);
+
+  $navi->printHtml();
+} catch (\Exception $e) {
+  echo ThrowableCalloutBuilder::build($e, true, true);
+}

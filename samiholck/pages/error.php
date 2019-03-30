@@ -8,7 +8,7 @@ md(<<<TEXT
         
 <p class="large">Keep on looking....</p>
         
-Double check the URL or head back to the [homepage](http://samiholck.com/). If 
+Double check the URL or head back to the [homepage](/). If 
 you continue to get this page, email me at sami.holck@samiholck.com.
 
 TEXT

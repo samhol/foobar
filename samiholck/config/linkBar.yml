@@ -1,14 +1,10 @@
 ## linkbar links
 ---
 - href: '/'
-  icon: fas fa-home
-  text: Home
+  text: <i class="fas fa-home"></i> Home
 - href: '/who'
-  icon: far fa-question-circle
-  text: Who am I
+  text: <i class="far fa-question-circle"></i> Who am I
 - href: '/calendar'
-  icon: fas fa-calendar
-  text: Calendar
+  text: <i class="fas fa-calendar"></i> Calendar
 - href: '/why'
-  icon: far fa-question-circle
-  text: Why all this
+  text: <i class="far fa-question-circle"></i> Why all this?
