@@ -7,6 +7,8 @@ use Sphp\Html\Foundation\Sites\Forms\Inputs\ValidableInlineInput;
 use Sphp\Html\Foundation\Sites\Forms\GridForm;
 use Sphp\Html\Foundation\Sites\Grids\BasicRow;
 use Sphp\Html\Foundation\Sites\Buttons\ButtonGroup;
+use Sphp\Security\CRSFToken;
+use Sphp\Security\ReCaptcha;
 
 $form = new GridForm();
 $form->validation(true);
@@ -67,6 +69,13 @@ $carRow->appendCell($message)->small(12);
 $form->append($carRow);
 
 $form->appendHiddenVariable('hidden1', 'I am hidden!');
+try {
+
+  $reCaptcha = new Sphp\Security\ReCAPTCHAv3();
+  $form->append($reCaptcha);
+} catch (\Exception $ex) {
+  echo $ex;
+}
 
 $buttons = new ButtonGroup();
 $buttons->appendSubmitter('<i class="fas fa-envelope"></i> Submit')->addCssClass('success');

@@ -10,6 +10,8 @@
 
 namespace Sphp\Samiholck\MVC\Content;
 
+use Sphp\Html\Foundation\Sites\Core\ThrowableCalloutBuilder;
+
 /**
  * Description of PageLoader
  *

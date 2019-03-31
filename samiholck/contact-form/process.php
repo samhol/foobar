@@ -47,6 +47,10 @@ $response['submitted'] = false;
 $response['raw_data'] = $vals;
 $mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
 $mailer->sendMessage(new ContactData($vals));
+$reCaptchav3 = new Sphp\Security\ReCAPTCHAv3();
+$reCaptchav3->verify('6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
+
+$_SESSION['contact-form']['ReCAPTCHAv3'] = $reCaptchav3->verify('6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
 /* if (!CRSFToken::instance()->verifyPostToken('contact-form')) {
   //CRSFToken::instance()->unsetToken('contact-form');
   $response['error'] = 'CRSF';
