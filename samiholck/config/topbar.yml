@@ -4,6 +4,12 @@ items:
   - link: <i class="fas fa-home"></i><span class="show-for-sr">Back to home</span>
     href: /
     class: icon-link
+  - link: <i class="fas fa-calendar-alt"></i> <span class="hide-for-medium">My calendar</span>
+    href: /calendar
+    class: icon-link
+  - link: <i class="fas fa-envelope"></i><span class="show-for-sr">Contact me</span>
+    href: /contact
+    class: icon-link
   - link: Who am I?
     href: /who
   - menu: Projects
@@ -20,3 +26,5 @@ items:
       href: /archive/unikoris
     - link: DVD laboratorio
       href: /archive/dvdlabra
+  - link: <i class="fas fa-play"></i> Intro
+    href: /introduction.php
