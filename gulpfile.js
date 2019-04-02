@@ -54,7 +54,8 @@ gulp.task('javascript', function () {
     './node_modules/tipso/src/tipso.js',
     './sphp/javascript/vendor/*.js',
     './sphp/javascript/app/modules/*.js',
-    './sphp/javascript/app/sphp.js'])
+    './sphp/javascript/app/sphp.js']
+    )
           .pipe(concat('all.js'))
           .pipe(uglify())
           .pipe(gulp.dest('./sphp/javascript/dist'));

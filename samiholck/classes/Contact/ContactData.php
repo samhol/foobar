@@ -16,88 +16,33 @@ namespace Sphp\Samiholck\Contact;
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
-class ContactData {
-
-  /**
-   * @var mixed 
-   */
-  private $name;
-
-  /**
-   * @var mixed 
-   */
-  private $email;
-
-  /**
-   * @var mixed 
-   */
-  private $phone;
-
-  /**
-   * @var Person 
-   */
-  private $contacter;
-
-  /**
-   * @var mixed 
-   */
-  private $subject;
-
-  /**
-   * @var mixed 
-   */
-  private $message;
+class ContactData extends \stdClass {
 
   /**
    * Constructs a new instance
    * 
    * @param array $data
    */
-  public function __construct(array $data) {
+  public function __construct(array $data = []) {
     foreach ($data as $k => $v) {
       $this->{$k} = $v;
     }
-    $this->contacter = new \Sphp\Data\Person($data);
   }
 
-  /**
-   * 
-   * @return mixed
-   */
-  public function getName(): ?string {
-    return $this->name;
+  public function __get(string $name) {
+    if (isset($this->$name)) {
+      return $this->$name;
+    } else {
+      return null;
+    }
   }
 
-  /**
-   * 
-   * @return mixed
-   */
-  public function getEmail() {
-    return $this->email;
+  public function __isset(string $name): bool {
+    return isset($this->$name) && $this->$name !== null;
   }
 
-  /**
-   * 
-   * @return boolean
-   */
-  public function hasPhoneNumber(): bool {
-    return !empty($this->phone);
-  }
-
-  /**
-   * 
-   * @return mixed
-   */
-  public function getPhoneNumber() {
-    return $this->phone;
-  }
-
-  function getSubject() {
-    return $this->subject;
-  }
-
-  function getMessage() {
-    return $this->message;
+  public function isSubmitted(): bool {
+    
   }
 
 }

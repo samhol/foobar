@@ -91,7 +91,7 @@ abstract class AbstractForm extends AbstractComponent implements Form {
     return $this;
   }
 
-  public function validation(bool $validate = true) {
+  public function useValidation(bool $validate = true) {
     $this->attributes()->setAttribute('novalidate', !$validate);
     return $this;
   }

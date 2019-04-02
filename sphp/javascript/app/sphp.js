@@ -107,17 +107,6 @@ if (!window.console.log) {
     }
   };
 
-  /**
-   * Returns the Foundation framework version number
-   *
-   * @public
-   * @static
-   * @returns {sphp} for fluent interface
-   */
-  sphp.preventFoundationFouc = function () {
-    console.log("sphp.preventFoundationFouc()");
-    $('.sphp-hide-fouc-on-load').removeClass('sphp-hide-fouc-on-load');
-  };
 
   /**
    * Initializes the clipboard functionality
@@ -170,12 +159,10 @@ if (!window.console.log) {
    */
   sphp.initialize = function () {
     sphp.enableConsole(true);
-    sphp.preventFoundationFouc();
-    console.log("sphp.initialize()");
+    console.log("sphp.initialize() started");
     sphp.initClipboard().initBackToTopButtons();
     sphp.historyBackButtons();
     //var $ajaxLoaders = $("[data-sphp-ajax-url]");
-    console.log("loaded");
 
     $(document).foundation();
     console.log("jQuery " + $.fn.jquery + " loaded...");
@@ -206,7 +193,8 @@ if (!window.console.log) {
       $accordion.lazyLoadXT();
       $accordion.find('.slider').show().foundation('_reflow');
     });
-    $("[data-src]").lazyLoadXT();
+    $("[data-src]").lazyLoadXT();   
+    sphp.initReCAPTCHAv3sForm();
 
   };
 
@@ -214,6 +202,6 @@ if (!window.console.log) {
 
 //$(window).bind("load", function () {
 //  "use strict";
-  sphp.initialize();
+sphp.initialize();
 
 //});

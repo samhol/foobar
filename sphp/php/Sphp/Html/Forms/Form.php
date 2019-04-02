@@ -10,7 +10,7 @@
 
 namespace Sphp\Html\Forms;
 
-use Sphp\Html\Content;
+use Sphp\Html\Component;
 
 /**
  * Defines required properties for an HTML &lt;form&gt; component
@@ -20,7 +20,7 @@ use Sphp\Html\Content;
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
-interface Form extends Content {
+interface Form extends Component {
 
   /**
    * Sets the value of the method attribute
@@ -139,7 +139,7 @@ interface Form extends Content {
    * @return $this for a fluent interface
    * @link   http://www.w3schools.com/tags/att_form_novalidate.asp novalidate attribute
    */
-  public function validation(bool $validable = true);
+  public function useValidation(bool $validable = true);
 
   /**
    * Sets the value of the target attribute
