@@ -113,14 +113,14 @@ $sitemap-border-highlight-color: rgba(70, 70, 70, 0.5);
     border-top: 1px solid #444;
     border-bottom: 1px solid $highlight-color; 
     @include shadow(6px 3px 8px 4px #888);
-    background-image: url("/samiholck/pics/dark-mosaic.png");
-    background-repeat: repeat;
-    background-position: 0 0;
     padding: rem-calc(20);
   }
   &.copyright-details-container {
     border-top: 1px solid #222;
-    background-color: #eee;
+    background-color: #f4f4f4;
+    background-image: url("/samiholck/pics/dark-mosaic.png");
+    background-repeat: repeat;
+    background-position: 0 0;;
     color: #555;
     text-align: center;
     p {

@@ -19,7 +19,9 @@ $currentUrl = URL::getCurrentURL();
   </footer>
 </div>
 <div class="manual-footer social-container">
-  <?php include 'samiholck/templates/contact-information.php'; ?>
+  <div class="grid-container">
+    <?php include 'samiholck/templates/contact-information.php'; ?>
+  </div>
 </div>
 <div class="manual-footer copyright-details-container">
   <footer class="copyright-details">
