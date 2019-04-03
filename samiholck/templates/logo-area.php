@@ -6,7 +6,7 @@ namespace Sphp\Html\Foundation\Sites\Navigation;
   <div class="cell small-auto medium-6">
     <ul class="logo">
       <li>
-        <img src="http://data.samiholck.com/images/samiholck.com.png" width="358" height="46" alt="samiholck.com logo">
+        <img src="samiholck/pics/samiholck.com.png" width="358" height="46" alt="samiholck.com logo">
       </li>
     </ul>
   </div>
