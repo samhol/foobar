@@ -47,6 +47,10 @@ class ContactMailer {
     $this->mailer = new Mailer();
   }
 
+  public function __destruct() {
+    unset($this->mailer);
+  }
+
   /**
    * 
    * @param  ContactMessage $data
@@ -56,7 +60,7 @@ class ContactMailer {
     $this->mailer
             ->setFrom($this->sender)
             ->setTo($this->receiver)
-            ->setSubject($data->getSubject())
+            ->setSubject($data->subject)
             ->setBody($this->createMailBody($data))
             ->send();
     return $this;
@@ -69,7 +73,7 @@ class ContactMailer {
    */
   protected function replyTo(ContactData $data) {
     $this->getMessage()->setFrom($this->sender);
-    $this->getMessage()->addTo($data->getEmail());
+    $this->getMessage()->addTo($data->email);
     $this->getMessage()->setSubject("Thank you for your message");
     $this->getMessage()->setBody('I will get back to you as soon as possible');
     $this->getMessage()->setEncoding('UTF-8');
@@ -84,7 +88,7 @@ class ContactMailer {
    */
   protected function createMailBody(ContactData $data): string {
     $mailBody = "Message:\n";
-    $mailBody .= $data->getMessage();
+    $mailBody .= $data->message;
     $mailBody .= $this->createContacterData($data);
     return $mailBody;
   }
@@ -93,11 +97,11 @@ class ContactMailer {
     $output = '';
     $output .= "\n\n----------------------\n";
     $output .= "Contacter:\n";
-    if (!empty($data->getName())) {
-      $output .= "\n" . $data->getName();
+    if (!empty($data->name)) {
+      $output .= "\n" . $data->name;
     }
-    $output .= "\nemail:   " . $data->getEmail();
-    $output .= "\nphone:   " . $data->getPhonenumber();
+    $output .= "\nemail:   " . $data->email;
+    $output .= "\nphone:   " . $data->phone;
     $output .= "\n----------------------\n";
     return $output;
   }

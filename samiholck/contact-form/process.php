@@ -45,8 +45,6 @@ $validator->setValidator('subject', new NotEmpty());
 $validator->setValidator('message', new NotEmpty());
 
 $data->submitted = false;
-//$mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
-//$mailer->sendMessage(new ContactData($vals));
 
 $reCaptchav3 = new ReCAPTCHAv3('6Ld3H5sUAAAAAInA__yPC_24WU7OouFxJ7rbWFc5', '6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
 //$reCaptchav3->verify('6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
@@ -58,22 +56,25 @@ $data->submitted = false;
 $crsfToken = new \Sphp\Security\CRSFToken();
 if (!$crsfToken->verifyPostToken('contact_token')) {
   $data->errors = 'Session failure!';
+  $crsfToken->unsetToken('contact_token');
   (new Location('http://foobar.samiholck.com/contact'))->execute();
 } else {
-  $crsfToken->unsetToken('contact_token');
-}
-try {
-  $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
-  $data->humanScore = $score;
-  //$_SESSION['contact_form']['score'] = $score;
-  if ($score > 0.5) {
-    $data->submitted = true;
+  try {
+    $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
+    $data->humanScore = $score;
+    //$_SESSION['contact_form']['score'] = $score;
+    if ($score > 0.5) {
+
+      $mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
+      $mailer->sendMessage($data);
+      $data->submitted = true;
+    }
+  } catch (\Exception $ex) {
+    $data->errors = $ex->getMessage();
   }
-} catch (\Exception $ex) {
-  $data->errors = $ex->getMessage();
+  $_SESSION['contactFornResult'] = $data;
 }
 //$result['messageData'] = (object) $vals;
-$_SESSION['contactFornResult'] = $data;
 /* if (!CRSFToken::instance()->verifyPostToken('contact-form')) {
   //CRSFToken::instance()->unsetToken('contact-form');
   $response['error'] = 'CRSF';

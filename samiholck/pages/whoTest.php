@@ -27,14 +27,14 @@ MD
 use Sphp\Html\Foundation\Sites\Containers\Modal;
 use Sphp\Html\Document;
 
-use Sphp\Html\Foundation\Sites\Grids\Row;
+use Sphp\Html\Foundation\Sites\Grids\BasicRow;
 use Sphp\Html\Foundation\Sites\Media\ResponsiveEmbed;
 
 $map = ResponsiveEmbed::iframe('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1968.7082546795589!2d22.300856632547603!3d60.43352261303713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x468c7727a6466e41%3A0xa7ad26a37594a821!2sRakuunatie+59%2C+20720+Turku!5e0!3m2!1sen!2sfi!4v1521810129616');
-$g = new Row();
-$g->layout()->usePadding();
-$g->appendColumn(\Sphp\Stdlib\Filesystem::executePhpToString('contact-form/contacts.php'), ['small-12', 'large-6']);
-$g->append($map)->layout()->setLayouts('small-12', 'large-6');
+$g = new BasicRow();
+$g->usePadding();
+$g->appendCell(\Sphp\Stdlib\Filesystem::executePhpToString('samiholck/templates/contact-information.php'), ['small-12', 'large-6']);
+$g->appendCell($map)->small(12);
 echo $g;
 $modal = new Modal('<i class="far fa-envelope"></i> Contact form', '<div id="form-container"></div>');
 $modal->getPopup()->addCssClass('contact-form-container')->prepend('<h2>Contact Form</h2>');
