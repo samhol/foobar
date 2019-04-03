@@ -109,63 +109,14 @@ $sitemap-border-highlight-color: rgba(70, 70, 70, 0.5);
     }
   }
   &.social-container {
-    background-color: #140f00;
+    background-color: #fff;
     border-top: 1px solid #444;
     border-bottom: 1px solid $highlight-color; 
+    @include shadow(6px 3px 8px 4px #888);
     background-image: url("/samiholck/pics/dark-mosaic.png");
     background-repeat: repeat;
     background-position: 0 0;
-    .social {
-      .thumbnail {
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      @include grid-row();
-      color: #fafafa;
-      padding: rem-calc(20 0 30 0);
-      .footer-left {
-        @include breakpoint(small) {
-          @include grid-column(12);
-        }
-        @include breakpoint(medium) { 
-          @include grid-column(6);
-        }
-        ul {
-          list-style: none;
-          font-size: rem-calc(13);
-          li, li a {
-            color: #fff;
-            svg {
-              @include opacity(0.7);
-              margin-right: rem-calc(5);
-            }
-          }
-        }
-      }
-      .footer-right {
-        text-align: right;
-        @include breakpoint(small) {
-          @include grid-column(12); 
-        }
-        @include breakpoint(medium) {
-          @include grid-column(6);
-        }
-        svg, .fa {
-          padding: 0 0 0 0.6rem;
-          color: #e5e5e5; 
-          &:hover {
-            color: #fff; 
-          }
-        }
-      }
-      h2 {
-        color: $white;
-      }
-      p {
-        font-size: 0.8rem;
-        margin-bottom: 0;
-      }
-    }
+    padding: rem-calc(20);
   }
   &.copyright-details-container {
     border-top: 1px solid #222;

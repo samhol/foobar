@@ -119,4 +119,4 @@ $form->append($buttonRow);
 //$form->liveValidate();
 
 echo "$form<hr>";
-include 'samiholck/pages/contacts.php';
+include 'samiholck/templates/contact-information.php';

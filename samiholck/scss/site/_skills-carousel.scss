@@ -30,9 +30,9 @@
       @include border-radius(2px);
     }
     .sphp.slide {
+      @include transition(all, 0.6s, ease-in-out);
       cursor: pointer;
       @include opacity(.3);
-      @include transition(all, 0.6s, ease-in-out);
       .svg {
         svg {
           display: block;

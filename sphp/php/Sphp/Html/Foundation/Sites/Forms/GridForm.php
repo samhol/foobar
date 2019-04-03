@@ -17,7 +17,6 @@ use IteratorAggregate;
 use Sphp\Html\Forms\TraversableForm;
 use Sphp\Html\Foundation\Sites\Grids\Grid;
 use Sphp\Html\Foundation\Sites\Grids\Row;
-use Sphp\Html\Forms\TraversableFormTrait;
 use Sphp\Html\Foundation\Sites\Containers\ContentCallout;
 use Sphp\Html\Forms\Inputs\HiddenInputs;
 use Sphp\Html\Forms\Inputs\HiddenInput;
@@ -34,7 +33,7 @@ use Sphp\Html\TraversableContent;
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
-class GridForm extends AbstractForm implements IteratorAggregate, TraversableForm {
+class GridForm extends AbstractForm {
 
   /**
    * @var ContentCallout
@@ -129,14 +128,10 @@ class GridForm extends AbstractForm implements IteratorAggregate, TraversableFor
   }
 
   /**
-   * Appends a new {@link RowInterface} to the grid
-   *
-   * **Important!**
-   *
-   * * `$row` not extending {@link RowInterface} is wrapped inside a {@link FormRow} component.
+   * Appends a new row to the grid
    *
    * @param  mixed|Row $row the new row or the content of the new row
-   * @return Row for a fluent interface
+   * @return Row appended instance
    * @link   http://www.php.net/manual/en/language.oop5.magic.php#object.tostring __toString() method
    */
   public function append($row): Row {
@@ -144,14 +139,10 @@ class GridForm extends AbstractForm implements IteratorAggregate, TraversableFor
   }
 
   /**
-   * Prepends a new {@link RowInterface} to the grid
-   *
-   * **Important!**
-   *
-   * * `$row` not extending {@link RowInterface} is wrapped inside a {@link FormRow} component.
+   * Prepends a new row to the grid
    *
    * @param  mixed|Row $row the new row or the content of the new row
-   * @return $this for a fluent interface
+   * @return Row prepended instance
    * @link   http://www.php.net/manual/en/language.oop5.magic.php#object.tostring __toString() method
    */
   public function prepend($row): Row {
@@ -161,58 +152,13 @@ class GridForm extends AbstractForm implements IteratorAggregate, TraversableFor
   /**
    * Appends a hidden variable into the form
    *
-   * Appended <var>$name => $value</var> pair is stored into a
-   *  {@link HiddenInput} object
-   *
-   * @param  string $name th name of the hidden variable
+   * @param  string $name the name of the hidden variable
    * @param  scalar $value the value of the hidden variable
    * @return $this for a fluent interface
    * @see    HiddenInput
    */
-  public function appendHiddenVariable($name, $value): HiddenInput {
+  public function appendHiddenVariable(string $name, $value): HiddenInput {
     return $this->hiddenInputs->insertVariable($name, $value);
-  }
-
-  /**
-   * Returns all {@link ColumnInterface} components from the grid
-   * 
-   * @return TraversableContent containing all the {@link ColumnInterface} components
-   */
-  public function getCells(): TraversableContent {
-    return $this->getComponentsByObjectType(Cell::class);
-  }
-
-  /**
-   * Returns all {@link InputCell} components from the grid
-   * 
-   * @return TraversableContent containing all the {@link InputColumn} components
-   */
-  public function getInputColumns(): TraversableContent {
-    return $this->getComponentsByObjectType(InputCell::class);
-  }
-
-  public function count(): int {
-    
-  }
-
-  public function getComponentsBy(callable $rules): TraversableContent {
-    
-  }
-
-  public function getComponentsByObjectType($typeName): TraversableContent {
-    
-  }
-
-  public function getIterator(): \Traversable {
-    
-  }
-
-  public function getNamedInputComponents(): TraversableContent {
-    
-  }
-
-  public function toArray(): array {
-    
   }
 
 }

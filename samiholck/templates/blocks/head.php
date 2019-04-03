@@ -21,7 +21,6 @@ $head->set(Meta::viewport('width=device-width, initial-scale=1.0'));
 $head->setDocumentTitle($title);
 
 $head->set(Link::stylesheet('/css/styles.all.css'));
-$head->set(Link::stylesheet('https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css'));
 $head->set(Link::stylesheet('https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css'));
 $head->set(Link::appleTouchIcon('/apple-touch-icon.png'));
 $head->set(Link::icon('/favicon-32x32.png', '32x32'));

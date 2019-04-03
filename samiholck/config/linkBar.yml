@@ -2,9 +2,9 @@
 ---
 - href: '/'
   text: <i class="fas fa-home"></i> Home
-- href: '/who'
+- href: /who
   text: <i class="far fa-question-circle"></i> Who am I
-- href: '/calendar'
+- href: /calendar
   text: <i class="fas fa-calendar"></i> Calendar
-- href: '/why'
-  text: <i class="far fa-question-circle"></i> Why all this?
+- href: /contact
+  text: <i class="fas fa-address-card"></i> Contacts

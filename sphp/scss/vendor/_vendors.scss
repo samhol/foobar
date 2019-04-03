@@ -10,9 +10,12 @@
 
 @import "GeSHi";
 @import "anytime.c"; 
-@import "jquery.qtip";
+@import "jquery.qtip";  
 
 @import "../../../node_modules/slick-carousel/slick/slick.scss";
 @import "../../../node_modules/slick-carousel/slick/slick-theme.scss";
 @import "../../../node_modules/ion-rangeslider/css/ion.rangeSlider"; 
+@import "../../../node_modules/motion-ui/src/motion-ui"; 
 
+@include motion-ui-transitions;
+@include motion-ui-animations;

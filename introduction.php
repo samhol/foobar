@@ -25,11 +25,9 @@ use Sphp\Html\Head\Meta;
 use Sphp\Html\Head\Link;
 
 $html->enableSPHP()
-        ->setViewport('width=device-width, initial-scale=1.0')
-        ->useFontAwesome();
+        ->setViewport('width=device-width, initial-scale=1.0');
 
 $head->set(Link::stylesheet('/css/styles.all.css'));
-$head->set(Link::stylesheet('https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css'));
 
 $head->set(Link::appleTouchIcon('/apple-touch-icon.png'));
 $head->set(Link::icon('/favicon-32x32.png', '32x32'));
