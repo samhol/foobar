@@ -21,7 +21,6 @@ $submitted = false;
 //header("Content-Type: application/json; charset=UTF-8");
 //unset($_SESSION['contact-form']);
 use Sphp\Security\CRSFToken;
-use Sphp\Config\Config;
 use Sphp\Validators\FormValidator;
 use Sphp\Validators\NotEmpty;
 use Sphp\Samiholck\Contact\ContactMailer;
@@ -34,11 +33,11 @@ $args = [
     'phone' => FILTER_SANITIZE_STRING,
     'subject' => FILTER_SANITIZE_STRING,
     'message' => FILTER_SANITIZE_STRING,
-    'contact_token' => FILTER_SANITIZE_STRING,
+        //'contact_token' => FILTER_SANITIZE_STRING,
         //'g-recaptcha-response' => FILTER_SANITIZE_STRING,
 ];
-
-$data = new ContactData(filter_input_array(INPUT_POST, $args));
+$formData = filter_input_array(INPUT_POST, $args);
+$data = new ContactData($formData);
 $validator = new FormValidator();
 $validator->setValidator('email', new Sphp\Validators\Email());
 $validator->setValidator('subject', new NotEmpty());
@@ -51,25 +50,27 @@ $reCaptchav3 = new ReCAPTCHAv3('6Ld3H5sUAAAAAInA__yPC_24WU7OouFxJ7rbWFc5', '6Ld3
 
 $data->submitted = false;
 
-
-
-$crsfToken = new \Sphp\Security\CRSFToken();
+$crsfToken = new CRSFToken();
 if (!$crsfToken->verifyPostToken('contact_token')) {
   $data->errors = 'Session failure!';
   $crsfToken->unsetToken('contact_token');
   (new Location('http://foobar.samiholck.com/contact'))->execute();
+} else if (!$validator->isValid($formData)) {
+  $data->errors = 'Invalid Form input!';
 } else {
   try {
     $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
     $data->humanScore = $score;
-    //$_SESSION['contact_form']['score'] = $score;
     if ($score > 0.5) {
-
       $mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
-      $mailer->sendMessage($data);
+      //$mailer->sendMessage($data);
       $data->submitted = true;
     }
-  } catch (\Exception $ex) {
+  } catch (Sphp\Exceptions\InvalidStateException $ex) {
+    $data->reCaptchav3Error = $ex->getMessage();
+    $data->errors = $ex->getMessage();
+  }
+  catch (\Exception $ex) {
     $data->errors = $ex->getMessage();
   }
   $_SESSION['contactFornResult'] = $data;

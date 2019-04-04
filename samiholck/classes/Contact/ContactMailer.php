@@ -75,7 +75,7 @@ class ContactMailer {
     $this->getMessage()->setFrom($this->sender);
     $this->getMessage()->addTo($data->email);
     $this->getMessage()->setSubject("Thank you for your message");
-    $this->getMessage()->setBody('I will get back to you as soon as possible');
+    $this->getMessage()->setBody('I <strong>will get back to you as soon as possible</strong>');
     $this->getMessage()->setEncoding('UTF-8');
     $this->send();
     return $this;

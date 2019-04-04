@@ -32,16 +32,26 @@ use stdClass;
 class DataObject extends stdClass implements ArrayAccess, Arrayable, IteratorAggregate {
 
   /**
-   * Assigns a value to the specified  configuration variable
+   * Constructs a new instance
    * 
-   * @param  string $varname the name of the variable
-   * @return mixed the value at the 
+   * @param array $data
    */
-  public function __get($varname) {
-    if (!isset($this->{$varname})) {
-      $this->{$varname} = new self();
+  public function __construct(array $data = []) {
+    foreach ($data as $k => $v) {
+      $this->{$k} = $v;
     }
-    return $this->{$varname};
+  }
+
+  public function __get(string $name) {
+    if (isset($this->$name)) {
+      return $this->$name;
+    } else {
+      return null;
+    }
+  }
+
+  public function __isset(string $name): bool {
+    return isset($this->$name) && $this->$name !== null;
   }
 
   /**
@@ -51,7 +61,7 @@ class DataObject extends stdClass implements ArrayAccess, Arrayable, IteratorAgg
    * @return boolean true on success or false on failure
    */
   public function offsetExists($varname): bool {
-    return isset($this->{$varname});
+    return isset($this->$varname);
   }
 
   /**
@@ -73,7 +83,7 @@ class DataObject extends stdClass implements ArrayAccess, Arrayable, IteratorAgg
    * @param  string $varname the name of the variable
    * @param  mixed $value the value to set
    */
-  public function offsetSet($varname, $value) {
+  public function offsetSet($varname, $value): void {
     $this->{$varname} = $value;
   }
 
@@ -82,7 +92,7 @@ class DataObject extends stdClass implements ArrayAccess, Arrayable, IteratorAgg
    * 
    * @param  string $varname the name of the variable
    */
-  public function offsetUnset($varname) {
+  public function offsetUnset($varname): void {
     if ($this->offsetExists($varname)) {
       unset($this->{$varname});
     }

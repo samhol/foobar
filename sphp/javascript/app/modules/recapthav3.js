@@ -1,24 +1,51 @@
-
+/**
+ * 
+ * @param {namespace} sphp
+ * @param {type} $
+ * @param {undefined} undefined
+ * @returns {undefined}
+ */
 (function (sphp, $, undefined) {
 
+  'use strict';
 
   sphp.initReCAPTCHAv3sForm = function () {
-    $('#contact_form').submit(function () {
-      console.log("#contact_form submitted");
-    });
     console.log("run initReCAPTCHAv3sForm");
-    if (typeof grecaptcha !== "undefined") {
-      grecaptcha.ready(function () {
-        $('form[data-sphp-grecaptcha-v3]').each(function () {
-          var $form = $(this), $formId = $form.attr('id'), $clientId = $form.attr('data-sphp-grecaptcha-v3-clientId');
-          grecaptcha.execute($clientId, {action: $formId}).then(function (token) {
+    var $form = $("form[data-sphp-grecaptcha-v3]");
+    var $submitBtn = $form.find("button.submitter");
+    var $formId = $form.attr('id'), $clientId = $form.attr('data-sphp-grecaptcha-v3-clientId');
+    $submitBtn.click(function () {
+      insertCaptha();
+    });
 
-            console.log("insert hidden input to #contact_form");
-            $form.prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
-          });
+    /**
+     * Sets the captha input to the form
+     * 
+     * @param {string} $name
+     * @param {string} $value
+     */
+    function setCapthaInput($name, $value) {
+      var $input = $form.find('input[name="' + $name + '"]');
+      if ($input.length === 0) {
+        console.log("insert recaptcha input to form");
+        $input = $('<input type="hidden" name="' + $name + '">');
+        $form.prepend($input);
+      }
+      $input.val($value);
+    }
+
+    function insertCaptha() {
+      if (typeof grecaptcha === "undefined") {
+        throw "Google grecaptcha object is not defined";
+      }
+      grecaptcha.ready(function () {
+        grecaptcha.execute($clientId, {action: $formId}).then(function (token) {
+          setCapthaInput("g-recaptcha-response", token);
+          $form.submit();
         });
       });
     }
+
   };
 
 }(window.sphp = window.sphp || {}, jQuery));

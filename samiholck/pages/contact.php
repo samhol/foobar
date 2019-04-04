@@ -20,19 +20,8 @@ if (isset($_SESSION['contactFornResult'])) {
   $callout = new ContentCallout();
   $callout->setClosable(true);
   $data = $_SESSION['contactFornResult'];
-  if (!$data instanceof \Sphp\Samiholck\Contact\ContactData || $data->submitted !== true) {
-    $callout->appendMd('## An Unspecified error occured!');
-    $callout->addCssClass('contact-form-error');
-  } else {
-    $callout->appendMd('## Thank you for your interest!');
-    $callout->appendMd("I'll get back to you as soon as possible!");
-  }
-  $resultGrid->append($callout);
-  $cell = new Sphp\Html\Foundation\Sites\Grids\ContainerCell();
-  $cell->getContent()->appendMd('You can send another message to me if you wish');
-  $resultGrid->append($cell);
-  echo $resultGrid;
-
+  $resV = new Sphp\Samiholck\Contact\ResultVisualizer($data);
+  echo $resV->generate();
   echo "<pre>SESSION:\n";
   print_r($_SESSION['contactFornResult']);
   echo '</pre>';
@@ -107,7 +96,7 @@ try {
 }
 
 $buttons = new ButtonGroup();
-$buttons->appendSubmitter('<i class="fas fa-envelope"></i> Submit')->addCssClass('success');
+$buttons->appendPushButton('<i class="fas fa-envelope"></i> Submit')->addCssClass('success', 'submitter');
 $buttons->appendResetter('<i class="fas fa-undo-alt"></i> Reset')->addCssClass('alert');
 $buttons->addCssClass('text-center');
 

@@ -10,13 +10,19 @@
 
 namespace Sphp\Samiholck\Contact;
 
+use Sphp\Stdlib\Datastructures\Arrayable;
+use ArrayAccess;
+use IteratorAggregate;
+use Countable;
+use stdClass;
+
 /**
  *
  * @author  Sami Holck <sami.holck@gmail.com>
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
-class ContactData extends \stdClass {
+class ContactData extends stdClass implements ArrayAccess, Arrayable, IteratorAggregate {
 
   /**
    * Constructs a new instance
@@ -41,8 +47,78 @@ class ContactData extends \stdClass {
     return isset($this->$name) && $this->$name !== null;
   }
 
-  public function isSubmitted(): bool {
-    
+  /**
+   * Checks whether the specific configuration variable exists
+   * 
+   * @param  string $varname the name of the variable
+   * @return boolean true on success or false on failure
+   */
+  public function offsetExists($varname): bool {
+    return isset($this->$varname);
+  }
+
+  /**
+   * Assigns a value to the specified  configuration variable
+   * 
+   * @param  string $varname the name of the variable
+   * @return mixed the value at the 
+   */
+  public function offsetGet($varname) {
+    if (!$this->offsetExists($varname)) {
+      $this->{$varname} = new self();
+    }
+    return $this->{$varname};
+  }
+
+  /**
+   * Assigns a value to the specified configuration variable
+   * 
+   * @param  string $varname the name of the variable
+   * @param  mixed $value the value to set
+   */
+  public function offsetSet($varname, $value): void {
+    $this->{$varname} = $value;
+  }
+
+  /**
+   * Unsets the specified variable
+   * 
+   * @param  string $varname the name of the variable
+   */
+  public function offsetUnset($varname): void {
+    if ($this->offsetExists($varname)) {
+      unset($this->{$varname});
+    }
+  }
+
+  public function toArray(): array {
+    $f = function ($data) use (&$f) {
+      if ($data instanceof DataObject) {
+        $data = get_object_vars($data);
+      }
+      if (is_array($data)) {
+        return array_map($f, $data);
+      } else {
+        return $data;
+      }
+    };
+    return $f($this);
+  }
+
+  public function getIterator(): \Traversable {
+    return new \ArrayIterator($this->toArray());
+  }
+
+  public static function fromArray(array $data): DataObject {
+    $result = new static();
+    foreach ($data as $key => $value) {
+      if (!is_array($value)) {
+        $result[$key] = $value;
+      } else {
+        $result[$key] = static::fromArray($value);
+      }
+    }
+    return $result;
   }
 
 }
