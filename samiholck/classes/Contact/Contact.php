@@ -23,16 +23,16 @@ use stdClass;
  * @filesource
  */
 class Contact {
-private $contacterMail;
+
+  private $contacterMail;
+
   /**
    * Constructs a new instance
    * 
    * @param array $data
    */
   public function __construct() {
-
+    
   }
-
-  
 
 }

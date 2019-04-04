@@ -71,7 +71,7 @@ class ContactMailer {
    * @param  ContactData $data
    * @return $this for a fluent interface
    */
-  protected function replyTo(ContactData $data) {
+  public function replyTo(ContactData $data) {
     $this->getMessage()->setFrom($this->sender);
     $this->getMessage()->addTo($data->email);
     $this->getMessage()->setSubject("Thank you for your message");
