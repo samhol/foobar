@@ -53,14 +53,14 @@ class ContactMailer {
 
   /**
    * 
-   * @param  ContactMessage $data
+   * @param  Contact $data
    * @return $this for a fluent interface
    */
-  public function sendMessage(ContactData $data) {
+  public function sendMessage(Contact $data) {
     $this->mailer
             ->setFrom($this->sender)
             ->setTo($this->receiver)
-            ->setSubject($data->subject)
+            ->setSubject($data->getSubject())
             ->setBody($this->createMailBody($data))
             ->send();
     return $this;
@@ -68,10 +68,10 @@ class ContactMailer {
 
   /**
    * 
-   * @param  ContactData $data
+   * @param  Contact $data
    * @return $this for a fluent interface
    */
-  public function replyTo(ContactData $data) {
+  public function replyTo(Contact $data) {
     $this->getMessage()->setFrom($this->sender);
     $this->getMessage()->addTo($data->email);
     $this->getMessage()->setSubject("Thank you for your message");
@@ -83,25 +83,25 @@ class ContactMailer {
 
   /**
    * 
-   * @param  ContactMessage $data
+   * @param  Contact $data
    * @return string mail body as a string
    */
-  protected function createMailBody(ContactData $data): string {
+  protected function createMailBody(Contact $data): string {
     $mailBody = "Message:\n";
-    $mailBody .= $data->message;
+    $mailBody .= $data->getMessage();
     $mailBody .= $this->createContacterData($data);
     return $mailBody;
   }
 
-  protected function createContacterData(ContactData $data): string {
+  protected function createContacterData(Contact $data): string {
     $output = '';
     $output .= "\n\n----------------------\n";
     $output .= "Contacter:\n";
-    if (!empty($data->name)) {
-      $output .= "\n" . $data->name;
+    if (!empty($data->getContacter())) {
+      $output .= "\n" . $data->getContacter();
     }
-    $output .= "\nemail:   " . $data->email;
-    $output .= "\nphone:   " . $data->phone;
+    $output .= "\nemail:   " . $data->getEmail();
+    $output .= "\nphone:   " . $data->getPhone();
     $output .= "\n----------------------\n";
     return $output;
   }

@@ -28,23 +28,16 @@ class Contact {
    * @var string
    */
   private $contacter;
-  
+
+  /**
+   * @var string
+   */
   private $phone;
 
   /**
    * @var string
    */
-  private $middleMan;
-
-  /**
-   * @var string
-   */
-  private $contacterMail;
-
-  /**
-   * @var string
-   */
-  private $receiver;
+  private $email;
 
   /**
    * @var string
@@ -56,15 +49,6 @@ class Contact {
    */
   private $subject;
 
-  /**
-   * Constructs a new instance
-   * 
-   * @param array $data
-   */
-  public function __construct() {
-    
-  }
-
   public function getContacter() {
     return $this->contacter;
   }
@@ -73,6 +57,7 @@ class Contact {
     $this->contacter = $contacter;
     return $this;
   }
+
   public function getPhone(): ?string {
     return $this->phone;
   }
@@ -82,16 +67,8 @@ class Contact {
     return $this;
   }
 
-    public function getMiddleMan(): ?string {
-    return $this->middleMan;
-  }
-
-  public function getContacterMail(): ?string {
-    return $this->contacterMail;
-  }
-
-  public function getReceiver(): ?string {
-    return $this->receiver;
+  public function getEmail(): ?string {
+    return $this->email;
   }
 
   public function getMessage(): ?string {
@@ -102,18 +79,8 @@ class Contact {
     return $this->subject;
   }
 
-  public function setMiddleMan(string $middleMan) {
-    $this->middleMan = $middleMan;
-    return $this;
-  }
-
-  public function setContacterMail(string $contacterMail) {
-    $this->contacterMail = $contacterMail;
-    return $this;
-  }
-
-  public function setReceiver(string $receiver) {
-    $this->receiver = $receiver;
+  public function setEmail(string $contacterMail) {
+    $this->email = $contacterMail;
     return $this;
   }
 

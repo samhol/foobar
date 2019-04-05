@@ -12,11 +12,14 @@ namespace Sphp\Samiholck\Contact;
 
 use Sphp\Security\CRSFToken;
 use Sphp\Validators\FormValidator;
+use Sphp\Validators\Email;
 use Sphp\Validators\NotEmpty;
-use Sphp\Samiholck\Contact\ContactMailer;
+use Sphp\Samiholck\Contact\ContactDataMailer;
 use Sphp\Samiholck\Contact\ContactData;
 use Sphp\Security\ReCAPTCHAv3;
 use Sphp\Network\Headers\Location;
+use Sphp\Stdlib\Datastructures\DataObject;
+use Sphp\Stdlib\Parsers\Parser;
 
 /**
  * Implementation of Controller
@@ -39,9 +42,9 @@ class Controller {
   private $validator;
 
   public function __construct() {
-    $this->data = new ContactData;
+    $this->data = new DataObject();
     $this->validator = new FormValidator();
-    $this->validator->setValidator('email', new Sphp\Validators\Email());
+    $this->validator->setValidator('email', new Email());
     $this->validator->setValidator('subject', new NotEmpty());
     $this->validator->setValidator('message', new NotEmpty());
   }
@@ -54,7 +57,23 @@ class Controller {
     return $this->data;
   }
 
-  public function validateSubmissionData(): bool {
+  public function getContactData() {
+    $raw = $this->getRawMessage();
+    $this->data->validMail = true;
+    if (!$this->validator->isValid($raw)) {
+      $this->data->validMail = false;
+      $this->data->mailErrors = new ContactData($this->validator->errorsToArray());
+    }
+    $contact = new Contact();
+    $contact->setEmail($raw['email'])
+            ->setContacter($raw['name'])
+            ->setPhone($raw['phone'])
+            ->setSubject($raw['subject'])
+            ->setMessage($raw['message']);
+    return $contact;
+  }
+
+  public function getRawMessage(): array {
     $args = [
         'name' => FILTER_SANITIZE_STRING,
         'email' => FILTER_SANITIZE_STRING,
@@ -62,86 +81,60 @@ class Controller {
         'subject' => FILTER_SANITIZE_STRING,
         'message' => FILTER_SANITIZE_STRING,
     ];
-    $this->data->validMail = true;
-    if (!$this->validator->isValid(filter_input_array(INPUT_POST, $args))) {
-      $this->data->validMail = false;
-      $this->data->mailErrors = new ContactData($this->validator->errorsToArray());
-    }
-    return $this->data->validMail;
+    return filter_input_array(INPUT_POST, $args);
   }
 
-  public function verifySubmission() {
-
+  public function verifyTokens(): bool {
+    $valid = true;
+    $conf = Parser::fromFile('samiholck/config/private/contact-form.yml');
+    $reCaptchav3 = new ReCAPTCHAv3($conf['reCAPTCHAv3']['site_key'], $conf['reCAPTCHAv3']['secret']);
     $crsfToken = new CRSFToken();
     if (!$crsfToken->verifyPostToken('contact_token')) {
       $this->data->errors = 'Session failure!';
-      $crsfToken->unsetToken('contact_token');
-      (new Location('http://foobar.samiholck.com/contact'))->execute();
-    } else if (!$validator->isValid($formData)) {
-      $data->errors = 'Invalid Form input!';
-    } else {
-      try {
-        $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
-        $data->humanScore = $score;
-        if ($score > 0.5) {
-          $mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
-          //$mailer->sendMessage($data);
-          $data->submitted = true;
-        }
-      } catch (Sphp\Exceptions\InvalidStateException $ex) {
-        $data->reCaptchav3Error = $ex->getMessage();
-        $data->errors = $ex->getMessage();
-      } catch (\Exception $ex) {
-        $data->errors = $ex->getMessage();
-      }
-      $_SESSION['contactFornResult'] = $data;
+      $this->data->crsfToken = 'CRSFToken does not match!';
+      $valid = false;
     }
+    try {
+      $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
+      $this->data->humanScore = $score;
+      if ($score <= 0.5) {
+        $this->data->submitted = true;
+        $valid = false;
+      }
+    } catch (Sphp\Exceptions\InvalidStateException $ex) {
+      $this->data->reCaptchav3Error = $ex->getMessage();
+      $this->data->errors = $ex->getMessage();
+      $valid = false;
+    } catch (\Exception $ex) {
+      $this->data->errors = $ex->getMessage();
+      $valid = false;
+    }
+    return $valid;
   }
 
-  public  function process() {
-
-    $formData = $this->getSubmissionData();
-    $data = new ContactData($formData);
-    $validator = new FormValidator();
-    $validator->setValidator('email', new Sphp\Validators\Email());
-    $validator->setValidator('subject', new NotEmpty());
-    $validator->setValidator('message', new NotEmpty());
-
-    $data->submitted = false;
-
-    $reCaptchav3 = new ReCAPTCHAv3('6Ld3H5sUAAAAAInA__yPC_24WU7OouFxJ7rbWFc5', '6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
-//$reCaptchav3->verify('6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG');
-
-    $data->submitted = false;
-
-    $crsfToken = new CRSFToken();
-    if (!$crsfToken->verifyPostToken('contact_token')) {
-      $data->errors = 'Session failure!';
-      $crsfToken->unsetToken('contact_token');
-      (new Location('http://foobar.samiholck.com/contact'))->execute();
-    } else if (!$validator->isValid($formData)) {
-      $data->errors = 'Invalid Form input!';
+  public function process() {
+    if (!$this->verifyTokens()) {
+      $this->data->submitted = false;
     } else {
-      try {
-        $score = $reCaptchav3->getScoreFor('g-recaptcha-response');
-        $data->humanScore = $score;
-        if ($score > 0.5) {
-          $mailer = new ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
-          //$mailer->sendMessage($data);
-          $data->submitted = true;
-        }
-      } catch (Sphp\Exceptions\InvalidStateException $ex) {
-        $data->reCaptchav3Error = $ex->getMessage();
-        $data->errors = $ex->getMessage();
-      } catch (\Exception $ex) {
-        $data->errors = $ex->getMessage();
+      $raw = $this->getRawMessage();
+      $this->data->validMail = true;
+      if ($this->validator->isValid($raw)) {
+        $contact = new Contact();
+        $contact->setEmail($raw['email'])
+                ->setContacter($raw['name'])
+                ->setPhone($raw['phone'])
+                ->setSubject($raw['subject'])
+                ->setMessage($raw['message']);
+        $mailer = new ContactDataMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
+        $mailer->sendMessage($contact);
+        $this->data->submitted = true;
+        $this->data->mailErrors = new ContactData($this->validator->errorsToArray());
+      } else {
+        $this->data->submitted = false;
       }
-      $_SESSION['contactFornResult'] = $data;
     }
-
-
+    $_SESSION['contactFornResult'] = $this->data;
     (new Location('http://foobar.samiholck.com/contact'))->execute();
-
   }
 
 }

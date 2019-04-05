@@ -1,0 +1,8 @@
+## Contact mail form settings
+---
+contact_form_email: contact_form@samiholck.com
+to: sami.holck@samiholck.com
+reCAPTCHAv3:
+  site_key: 6Ld3H5sUAAAAAInA__yPC_24WU7OouFxJ7rbWFc5
+  secret: 6Ld3H5sUAAAAADkrvgsmzfmLtbzASKAjV4SXn3RG
+  

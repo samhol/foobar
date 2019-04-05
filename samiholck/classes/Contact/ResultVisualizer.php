@@ -13,7 +13,7 @@ namespace Sphp\Samiholck\Contact;
 use Sphp\Html\Foundation\Sites\Grids\DivGrid;
 use Sphp\Html\Foundation\Sites\Containers\ContentCallout;
 use Sphp\Html\Foundation\Sites\Grids\ContainerCell;
-
+use Sphp\Stdlib\Datastructures\DataObject;
 /**
  * Implementation of ErrorManager
  *
@@ -26,11 +26,11 @@ class ResultVisualizer {
 
   /**
    *
-   * @var ContactData 
+   * @var DataObject 
    */
   private $data;
 
-  public function __construct(ContactData $data) {
+  public function __construct(DataObject $data) {
     $this->data = $data;
   }
 

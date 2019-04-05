@@ -29,6 +29,11 @@ class Mailer {
   private $message;
 
   /**
+   * @var Sendmail
+   */
+  private $sendmail;
+
+  /**
    * Constructs a new instance
    *
    * @param Message $message
@@ -52,6 +57,11 @@ class Mailer {
     return $this;
   }
 
+  /**
+   * 
+   * @param  string $subject
+   * @return $this
+   */
   public function setSubject(string $subject) {
     $this->message->setSubject($subject);
     return $this;

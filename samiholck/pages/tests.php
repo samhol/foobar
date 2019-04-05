@@ -1,14 +1,17 @@
 <?php
 
-use Sphp\Samiholck\Contact\ContactData;
+use Sphp\Samiholck\Contact\Contact;
+use Sphp\Samiholck\Contact\ContactDataMailer;
 
-$data = new ContactData();
 echo '<pre>';
-var_dump($data);
-var_dump($data->email, isset($data->email));
-$data->email = 'foo@bar.fo';
-var_dump($data->email, isset($data->email));
+$contact = new Contact;
+$contact->setSubject('Lorem ipsum')
+        ->setContacter('John Doe')
+        ->setPhone('+298 44 2986738')
+        ->setEmail('sami.holck@gmail.com')
+        ->setMessage('Lorem ipsum dolor sit amet.');
 
-$contacMailer = new \Sphp\Samiholck\Contact\ContactMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
-$contacMailer->
+$contacMailer = new ContactDataMailer('contact_form@samiholck.com', 'sami.holck@samiholck.com');
+$contacMailer->sendMessage($contact);
 echo '</pre>';
+

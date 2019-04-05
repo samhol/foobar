@@ -1,12 +1,23 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SPHPlayground Framework (http://playgound.samiholck.com/)
+ *
+ * @link      https://github.com/samhol/SPHP-framework for the source repository
+ * @copyright Copyright (c) 2007-2019 Sami Holck <sami.holck@gmail.com>
+ * @license   https://opensource.org/licenses/MIT The MIT License
  */
 
 namespace Sphp\Samiholck\Contact;
+
+use Zend\Mail\Transport\Sendmail;
+use Zend\Mail\Message;
+use Zend\Mime\Message as MimeMessage;
+use Zend\Mime\Mime;
+use Zend\Mime\Part as MimePart;
+use Sphp\Exceptions\InvalidArgumentException;
+use Sphp\Stdlib\Parsers\Parser;
+
 /**
  * Description of ContactDataMailer
  *
@@ -16,7 +27,7 @@ namespace Sphp\Samiholck\Contact;
  * @filesource
  */
 class ContactDataMailer {
- 
+
   /**
    * @var string 
    */
@@ -28,7 +39,7 @@ class ContactDataMailer {
   private $receiver;
 
   /**
-   * @var Mailer 
+   * @var Sendmail 
    */
   private $mailer;
 
@@ -40,7 +51,7 @@ class ContactDataMailer {
   public function __construct(string $autoSender, string $receiver) {
     $this->sender = $autoSender;
     $this->receiver = $receiver;
-    $this->mailer = new Mailer();
+    $this->mailer = new Sendmail();
   }
 
   public function __destruct() {
@@ -49,22 +60,27 @@ class ContactDataMailer {
 
   /**
    * 
-   * @param  ContactMessage $data
+   * @param  Contact $data
    * @return $this for a fluent interface
    */
   public function sendMessage(Contact $data) {
-    $this->mailer
-            ->setFrom($this->sender)
-            ->setTo($this->receiver)
+    $message = new Message();
+    $message->setFrom($this->sender)
+            ->addTo($this->receiver)
             ->setSubject($data->getSubject())
-            ->setBody($this->createMailBody($data))
-            ->send();
+            ->setBody($this->createMailBody($data));
+    $contentTypeHeader = $message->getHeaders()->get('Content-Type');
+    $contentTypeHeader->setType('multipart/alternative');
+    if (!$message->isValid()) {
+      throw new InvalidArgumentException('Invalid contact data');
+    }
+    $this->mailer->send($message);
     return $this;
   }
 
   /**
    * 
-   * @param  ContactData $data
+   * @param  Contact $data
    * @return $this for a fluent interface
    */
   public function replyTo(Contact $data) {
@@ -77,29 +93,57 @@ class ContactDataMailer {
     return $this;
   }
 
-  /**
-   * 
-   * @param  ContactMessage $data
-   * @return string mail body as a string
-   */
-  protected function createMailBody(ContactData $data): string {
-    $mailBody = "Message:\n";
-    $mailBody .= $data->message;
-    $mailBody .= $this->createContacterData($data);
-    return $mailBody;
+  protected function createMailBody(Contact $data): MimeMessage {
+    $body = new MimeMessage();
+    $body->setParts([$this->createMailBodyText($data), $this->createMailBodyHtml($data)]);
+    return $body;
   }
 
-  protected function createContacterData(ContactData $data): string {
-    $output = '';
-    $output .= "\n\n----------------------\n";
-    $output .= "Contacter:\n";
-    if (!empty($data->name)) {
-      $output .= "\n" . $data->name;
+  /**
+   * 
+   * @param  Contact $data
+   * @return MimePart mail body as plain text
+   */
+  protected function createMailBodyText(Contact $data): MimePart {
+    $text = $data->getMessage();
+    $text .= "\n__________________\n";
+    $text .= "Contacter:\n";
+    if (!empty($data->getContacter())) {
+      $text .= "\n  " . $data->getContacter();
     }
-    $output .= "\nemail:   " . $data->email;
-    $output .= "\nphone:   " . $data->phone;
-    $output .= "\n----------------------\n";
-    return $output;
+    $text .= "\n  email: " . $data->getEmail();
+    if (!empty($data->getPhone())) {
+      $text .= "\n  phone: " . $data->getPhone();
+    }
+    $mime = new MimePart($text);
+    $mime->type = Mime::TYPE_TEXT;
+    $mime->charset = 'utf-8';
+    $mime->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+    return $mime;
+  }
+
+  /**
+   * 
+   * @param  Contact $data
+   * @return MimePart mail body as HTML
+   */
+  protected function createMailBodyHtml(Contact $data): MimePart {
+    $raw = $data->getMessage();
+    $raw .= "\n---";
+    $raw .= "**Contacter:**\n";
+    if (!empty($data->getContacter())) {
+      $raw .= "\n * " . $data->getContacter();
+    }
+    $raw .= "\n * email: " . $data->getEmail();
+    if (!empty($data->getPhone())) {
+      $raw .= "\n * phone: " . $data->getPhone();
+    }
+    $parsed = "<html><body>" . Parser::fromString($raw, 'md') . "</body></html>";
+    $html = new MimePart($parsed);
+    $html->type = Mime::TYPE_HTML;
+    $html->charset = 'utf-8';
+    $html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+    return $html;
   }
 
 }
