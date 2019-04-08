@@ -78,7 +78,7 @@ gulp.task('foobar:sass', function () {
 });
 gulp.task('file_watch', function () {
   gulp.watch('./samiholck/scss/**/*.scss', gulp.series('foobar:sass'));
-  gulp.watch('./sphp/scss/**/*.scss', gulp.series('sass'));
+  gulp.watch('./sphp/scss/**/*.scss', gulp.series('sass', 'foobar:sass'));
   gulp.watch('./sphp/javascript/app/**/*.js', gulp.series('javascript'));
 });
 
