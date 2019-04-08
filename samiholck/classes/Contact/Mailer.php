@@ -54,15 +54,7 @@ class Mailer {
    * @param Message $message
    * @param Sendmail $sendMail
    */
-  public function __construct(Message $message = null, Sendmail $sendMail = null) {
-    if ($message === null) {
-      $message = new Message();
-    }
-    $this->message = $message;
-    if ($sendMail === null) {
-      $sendMail = new Sendmail();
-    }
-    $this->sendMail = $sendMail;
+  public function __construct(MimeMessage $message = null) {
     $this->htmlBody = new MimePart();
     $this->htmlBody->type = Mime::TYPE_HTML;
     $this->htmlBody->charset = 'utf-8';
@@ -75,24 +67,7 @@ class Mailer {
   }
 
   public function __destruct() {
-    unset($this->message, $this->sendMail);
-  }
-
-  /**
-   * Returns message object
-   * 
-   * @return Message
-   */
-  public function getMesssage(): Message {
-    return $this->message;
-  }
-
-  /**
-   * 
-   * @return Sendmail
-   */
-  public function getSendMail(): Sendmail {
-    return $this->sendMail;
+    unset($this->htmlBody, $this->textBody);
   }
 
   /**
@@ -122,22 +97,8 @@ class Mailer {
     }
   }
 
-  /**
-   * 
-   * @return $this for a fluent interface
-   */
-  public function send() {
-    $this->message->setBody($this->createMailBody());
-    $contentTypeHeader = $this->message->getHeaders()->get('Content-Type');
-    $contentTypeHeader->setType('multipart/alternative');
-    if (!$this->message->isValid()) {
-      throw new InvalidArgumentException('Invalid contact data');
-    }
-    $this->sendMail->send($this->message);
-    return $this;
-  }
 
-  protected function createMailBody(): MimeMessage {
+  public function createMailBody(): MimeMessage {
     $body = new MimeMessage();
     $body->setParts([$this->textBody, $this->htmlBody]);
     return $body;

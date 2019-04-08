@@ -11,10 +11,6 @@
 namespace Sphp\Samiholck\Contact;
 
 use Sphp\Stdlib\Datastructures\Arrayable;
-use ArrayAccess;
-use IteratorAggregate;
-use Countable;
-use stdClass;
 
 /**
  *

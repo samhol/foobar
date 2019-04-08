@@ -109,11 +109,11 @@ class ContactDataMailer {
     $text .= "\n__________________\n";
     $text .= "Contacter:\n";
     if (!empty($data->getContacter())) {
-      $text .= "\n  " . $data->getContacter();
+      $text .= "\n * " . $data->getContacter();
     }
-    $text .= "\n  email: " . $data->getEmail();
+    $text .= "\n * email: " . $data->getEmail();
     if (!empty($data->getPhone())) {
-      $text .= "\n  phone: " . $data->getPhone();
+      $text .= "\n * phone: " . $data->getPhone();
     }
     $mime = new MimePart($text);
     $mime->type = Mime::TYPE_TEXT;

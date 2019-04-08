@@ -7,4 +7,19 @@
     display: inline-block;
   } 
 
+
+}
+.contact-form-info {
+  &.error {
+    background-color: #f7e4e1; 
+  }
+  h2 {
+    border-bottom: 1px solid #004E66;
+
+  }
+  p {
+    margin-top: rem-calc(10);
+  }
+  //@include shadow();
+  @include border-radius(2px);
 }

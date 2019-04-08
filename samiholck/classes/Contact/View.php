@@ -35,6 +35,7 @@ class View {
     $resultGrid = new DivGrid();
     $callout = new ContentCallout();
     $callout->setClosable(true);
+    $callout->addCssClass('sphp', 'contact-form-info');
     if ($data->isSubmitted()) {
       $callout->appendMd('## Thank you for your interest!');
       $callout->appendMd("I'll get back to you as soon as possible!");
@@ -43,7 +44,7 @@ class View {
       foreach (\Sphp\Stdlib\Arrays::flatten($data->getErrors()) as $error) {
         $callout->appendMd($error);
       }
-      $callout->addCssClass('contact-form-error');
+      $callout->addCssClass('error');
     }
     $resultGrid->append($callout);
     $cell = new ContainerCell();
