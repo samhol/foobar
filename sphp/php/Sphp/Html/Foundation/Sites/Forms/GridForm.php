@@ -104,7 +104,8 @@ class GridForm extends AbstractForm {
   }
 
   public function contentToString(): string {
-    return $this->errorLabel . $this->getGrid()->getHtml() . $this->getHiddenInputs();
+    $output = '<div class="grid-container"><div class="grid-x"><div class="cell">'.$this->errorLabel.'</div></div></div>';
+    return $output. $this->getGrid()->getHtml() . $this->getHiddenInputs();
   }
 
   public function getGrid(): Grid {
