@@ -49,7 +49,7 @@ class Contact {
    */
   private $subject;
 
-  public function getContacter() {
+  public function getContacter(): ?string {
     return $this->contacter;
   }
 

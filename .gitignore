@@ -80,4 +80,5 @@ typings/
 /nbproject/
 composer.lock
 package-lock.json
+/samiholck/config/private/
 

@@ -11,6 +11,8 @@
 namespace Sphp\Html\Forms;
 
 use Sphp\Html\Component;
+use Sphp\Html\Forms\Inputs\HiddenInput;
+use Sphp\Html\Forms\Inputs\HiddenInputs;
 
 /**
  * Defines required properties for an HTML &lt;form&gt; component
@@ -179,4 +181,21 @@ interface Form extends Component {
    * @link  http://www.w3schools.com/tags/att_form_target.asp target attribute
    */
   public function getTarget(): ?string;
+
+  /**
+   * Appends a hidden variable into the form
+   *
+   * @param  string $name the name of the hidden variable
+   * @param  scalar $value the value of the hidden variable
+   * @return $this for a fluent interface
+   * @see    HiddenInput
+   */
+  public function appendHiddenVariable(string $name, $value): HiddenInput;
+
+  /**
+   * Returns all named {@link HiddenInput} components from the form
+   *
+   * @return HiddenInputs containing matching sub components
+   */
+  public function getHiddenInputs(): HiddenInputs;
 }

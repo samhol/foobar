@@ -31,17 +31,6 @@ use stdClass;
  */
 class DataObject extends stdClass implements ArrayAccess, Arrayable, IteratorAggregate {
 
-  /**
-   * Constructs a new instance
-   * 
-   * @param array $data
-   */
-  public function __construct(array $data = []) {
-    foreach ($data as $k => $v) {
-      $this->{$k} = $v;
-    }
-  }
-
   public function __get(string $name) {
     if (isset($this->$name)) {
       return $this->$name;

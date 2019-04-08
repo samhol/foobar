@@ -10,8 +10,8 @@
 
 namespace Sphp\Security;
 
-use Sphp\Html\AbstractContent;
 use Sphp\Exceptions\InvalidStateException;
+use Sphp\Html\Forms\Form;
 
 /**
  * Implementation of ReCAPTCHAv3
@@ -31,7 +31,7 @@ class ReCAPTCHAv3 {
     $this->secret = $secret;
   }
 
-  public function insertIntoForm(\Sphp\Html\Forms\Form $form, string $formId) {
+  public function insertIntoForm(Form $form, string $formId) {
     $form->setAttribute('id', $formId);
     echo new \Sphp\Html\Scripts\ScriptSrc("https://www.google.com/recaptcha/api.js?render={$this->clienId}");
     $form->setAttribute('data-sphp-grecaptcha-v3', 'g-recaptcha-response');

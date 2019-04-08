@@ -11,16 +11,10 @@
 namespace Sphp\Html\Foundation\Sites\Forms;
 
 use Sphp\Html\Forms\AbstractForm;
-use Sphp\Html\Foundation\Sites\Grids\AbstractGrid;
 use Sphp\Html\Foundation\Sites\Grids\DivGrid;
-use IteratorAggregate;
-use Sphp\Html\Forms\TraversableForm;
 use Sphp\Html\Foundation\Sites\Grids\Grid;
 use Sphp\Html\Foundation\Sites\Grids\Row;
 use Sphp\Html\Foundation\Sites\Containers\ContentCallout;
-use Sphp\Html\Forms\Inputs\HiddenInputs;
-use Sphp\Html\Forms\Inputs\HiddenInput;
-use Sphp\Html\TraversableContent;
 
 /**
  * Implements a framework form
@@ -41,11 +35,6 @@ class GridForm extends AbstractForm {
   private $errorLabel;
 
   /**
-   * @var HiddenInputs
-   */
-  private $hiddenInputs;
-
-  /**
    * @var DivGrid 
    */
   private $grid;
@@ -64,8 +53,7 @@ class GridForm extends AbstractForm {
    * @link   http://www.w3schools.com/tags/att_form_method.asp method attribute
    */
   public function __construct(string $action = null, string $method = null) {
-    parent::__construct('form');
-    $this->hiddenInputs = new HiddenInputs();
+    parent::__construct();
     if ($action !== null) {
       $this->setAction($action);
     }
@@ -80,7 +68,7 @@ class GridForm extends AbstractForm {
   }
 
   public function __destruct() {
-    unset($this->hiddenInputs, $this->errorLabel, $this->grid);
+    unset($this->errorLabel, $this->grid);
     parent::__destruct();
   }
 
@@ -103,10 +91,6 @@ class GridForm extends AbstractForm {
     }
     $this->attributes()->setAttribute('data-live-validate', $validate ? 'true' : 'false');
     return $this;
-  }
-
-  public function getHiddenInputs(): HiddenInputs {
-    return $this->hiddenInputs;
   }
 
   /**
@@ -147,18 +131,6 @@ class GridForm extends AbstractForm {
    */
   public function prepend($row): Row {
     return $this->getGrid()->prepend($row);
-  }
-
-  /**
-   * Appends a hidden variable into the form
-   *
-   * @param  string $name the name of the hidden variable
-   * @param  scalar $value the value of the hidden variable
-   * @return $this for a fluent interface
-   * @see    HiddenInput
-   */
-  public function appendHiddenVariable(string $name, $value): HiddenInput {
-    return $this->hiddenInputs->insertVariable($name, $value);
   }
 
 }
