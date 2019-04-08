@@ -8,15 +8,12 @@
  * @license   https://opensource.org/licenses/MIT The MIT License
  */
 
-
 namespace Sphp\Samiholck\Contact;
 
-use Sphp\Html\AbstractContent;
 use Sphp\Html\Foundation\Sites\Forms\Inputs\ValidableInlineInput;
 use Sphp\Html\Foundation\Sites\Forms\GridForm;
 use Sphp\Html\Foundation\Sites\Grids\BasicRow;
 use Sphp\Html\Foundation\Sites\Buttons\ButtonGroup;
-use Sphp\Security\ReCAPTCHAv3;
 use Sphp\Html\Foundation\Sites\Containers\ContentCallout;
 use Sphp\Html\Foundation\Sites\Grids\DivGrid;
 use Sphp\Html\Foundation\Sites\Grids\ContainerCell;
@@ -31,7 +28,7 @@ use Sphp\Html\Foundation\Sites\Grids\ContainerCell;
  */
 class View {
 
-  public function getResultView(ResultData $data) {
+  public function getResultView(ResultData $data): DivGrid {
     $resultGrid = new DivGrid();
     $callout = new ContentCallout();
     $callout->setClosable(true);
@@ -49,7 +46,7 @@ class View {
     $resultGrid->append($callout);
     $cell = new ContainerCell();
     $resultGrid->append($cell);
-    echo $resultGrid;
+    return $resultGrid;
   }
 
   public function buildForm(Contact $initialData = null): GridForm {
@@ -112,7 +109,7 @@ class View {
     $carRow->appendCell($messageTitle)->small(12);
     $carRow->appendCell($message)->small(12);
     $form->append($carRow);
-    
+
     $buttons = new ButtonGroup();
     $buttons->appendPushButton('<i class="fas fa-envelope"></i> Submit')->addCssClass('success', 'submitter');
     $buttons->appendResetter('<i class="fas fa-undo-alt"></i> Reset')->addCssClass('alert');

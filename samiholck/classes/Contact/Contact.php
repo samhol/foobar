@@ -18,7 +18,7 @@ use Sphp\Stdlib\Datastructures\Arrayable;
  * @license https://opensource.org/licenses/MIT The MIT License
  * @filesource
  */
-class Contact {
+class Contact implements Arrayable {
 
   /**
    * @var string
@@ -88,6 +88,10 @@ class Contact {
   public function setSubject(string $subject) {
     $this->subject = $subject;
     return $this;
+  }
+
+  public function toArray(): array {
+    return get_object_vars($this);
   }
 
 }

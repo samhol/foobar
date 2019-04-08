@@ -2,7 +2,7 @@
 
 namespace Sphp\Html\Foundation\Sites\Navigation;
 ?>
-<div class="grid-x full sphp-logo-area">
+<div class="grid-x  sphp-logo-area">
   <div class="cell small-auto medium-6">
     <ul class="logo">
       <li>
@@ -18,9 +18,8 @@ namespace Sphp\Html\Foundation\Sites\Navigation;
     $bi = new IconButtons();
     $bi->github('https://github.com/samhol/SPHP-framework', 'Gihub repository');
     $bi->facebookF('https://www.facebook.com/Sami.Petteri.Holck.Playground/', 'Facebook page');
-    // $bi->googlePlus('https://plus.google.com/b/113942361282002156141/113942361282002156141', 'Google plus page');
     $bi->twitter('https://twitter.com/SPHPframework', 'Twitter page');
-    $bi->addCssClass('rounded')->printHtml();
+    $bi->addCssClass('radius')->printHtml();
     ?>
   </div>
 </div>
