@@ -6,10 +6,23 @@
  * @license   https://opensource.org/licenses/MIT The MIT License
  */
 
-
 @import "intro";
 @import "main-content";
 @import "social-icons";
+@import "linkbar";
+.tipso_bubble {
+  @include shadow;
+  
+  //@include opacity(.92);
+}
+.tipso_title {
+  padding-top: rem-calc(6);
+  @include shadow;
+	border-bottom: solid 1px $burn-color;
+}
+.tipso_content {
+  word-wrap: normal;
+}
 .sphp.calendar.month {
-  font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+  font-family: "Source Sans Pro", Helvetica,Arial, sans-serif;
 }

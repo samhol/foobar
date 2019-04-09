@@ -7,16 +7,18 @@ use Sphp\Stdlib\Strings;
 
 $links = Parser::fromFile('samiholck/config/linkBar.yml');
 $linkBar = new ButtonGroup();
+$linkBar->addCssClass('sphp', 'linkbar');
 $url = URL::getCurrent();
 
 foreach ($links as $link) {
-  $hyperLink = $linkBar->appendHyperlink($link['href'], $link['text']);
-  //var_dump($url->getPath(),$link['href']);
   if ($url->getPath() === $link['href'] ||
           $link['href'] === '/calendar' &&
           Strings::startsWith($url->getPath(), $link['href'])) {
-
+    $hyperLink = $linkBar->appendButton(new Sphp\Html\Span($link['text']));
     $hyperLink->addCssClass('disabled');
+  } else {
+    $hyperLink = $linkBar->appendHyperlink($link['href'], $link['text']);
+    $hyperLink->setAttribute('data-sphp-tipso')->setAttribute('data-tipso', $link['data-tipso'])->setAttribute('data-tipso-title', $link['data-tipso-title'])->setAttribute('title', 'foobar');
   }
 }
 

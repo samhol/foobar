@@ -200,6 +200,8 @@ if (!window.console.log) {
     });
     $("[data-src]").lazyLoadXT();
     sphp.initReCAPTCHAv3sForm();
+    $("[data-sphp-tipso]").sphpTipso();
+    $("[data-sphp-php-info-tipso]").phpInfoTipso();
 
   };
 

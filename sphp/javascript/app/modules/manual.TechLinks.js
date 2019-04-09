@@ -16,10 +16,14 @@
   manual.techLinksList = function () {
     //var $irs;
     console.log("manual.TechLinks() v2");
-    $(".tech-links-list .jQuery")
-            .attr("title", "jQuery: " + $.fn.jquery);
-    $(".tech-links-list .foundation")
-            .attr("title", "Foundation for sites version: " + Foundation.version);
+    $(".tech-links-list .jQuery").tipso({
+      titleContent: 'jQuery',
+      content: "version: " + $.fn.jquery
+    });
+    $(".tech-links-list .foundation").tipso({
+      titleContent: 'Foundation for sites',
+      content: "version: " + Foundation.version
+    });
   };
 
 }(window.manual = window.manual || {}, jQuery));

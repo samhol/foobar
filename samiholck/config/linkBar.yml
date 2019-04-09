@@ -2,9 +2,17 @@
 ---
 - href: '/'
   text: <i class="fas fa-home"></i> Home
+  data-tipso: Front page
+  data-tipso-title: Back to
 - href: /who
   text: <i class="far fa-question-circle"></i> Who am I
+  data-tipso: Personal information
+  data-tipso-title: Link to
 - href: /calendar
   text: <i class="fas fa-calendar"></i> Calendar
+  data-tipso: My Calendar
+  data-tipso-title: Link to
 - href: /contact
   text: <i class="fas fa-address-card"></i> Contacts
+  data-tipso: Contact information
+  data-tipso-title: Link to
