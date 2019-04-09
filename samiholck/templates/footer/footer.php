@@ -1,8 +1,7 @@
 <?php
 
 use Sphp\Network\URL;
-use Sphp\Html\Media\Icons\FA;
-use Sphp\Html\Media\Icons\FaIcon;
+use Sphp\Stdlib\StopWatch;
 
 $currentUrl = URL::getCurrentURL();
 ?>
@@ -25,30 +24,15 @@ $currentUrl = URL::getCurrentURL();
   </div>
   <div class="copyright-details-container">
     <footer class="copyright-details">
-      <p>
-        <?php
+      <p><span class="separator">&lt;{[</span>
 
-        use Sphp\Stdlib\StopWatch;
-
-$mem = number_format(memory_get_usage(true) / 1048576, 2);
-        $time = number_format(StopWatch::getExecutionTime(), 2);
-        ?>
         Copyright &copy; <?php echo date('Y'); ?> by <b>Sami Holck</b>.
-        <span class="separator">||</span>
-        <a href="/manual/license.php" target="license" rel="copyright"><b>MIT license</b></a>
-        <span class="separator">||</span>
-        <b>Script executed in:</b>
-        <i><?php echo $time ?> seconds</i>
-        <span class="separator">||</span> <b>PHP Peak memory:</b>
-        <i><?php echo $mem; ?>MB</i>
+        <a href="/manual/license.php" target="license" rel="copyright"><span class="separator">- </span><b>MIT license</b><span class="separator"> -</span></a>
+        <span class="separator">]}&gt;</span>
       </p>
-      <div id="php-info-tipso-content" style="display: none;">
-        <strong>Executed in:</strong> <var><?php echo $time ?> seconds</var><br>
-        <strong>Peak memory:</strong> <var><?php echo $mem ?></var> MB
-      </div>
       <ul class="tech-links-list">
         <li>
-          <a href="http://www.php.net/" data-sphp-php-info-tipso data-mem="<?php echo $mem; ?>" data-time="<?php echo $time; ?>" data-version="<?php echo phpversion(); ?>">
+          <a class="php" href="https://www.php.net/">
             <svg viewBox="0 0 128 128">
             <path d="M64 33.039c-33.74 0-61.094 13.862-61.094 30.961s27.354 30.961 61.094 30.961 61.094-13.862 61.094-30.961-27.354-30.961-61.094-30.961zm-15.897 36.993c-1.458 1.364-3.077 1.927-4.86 2.507-1.783.581-4.052.461-6.811.461h-6.253l-1.733 10h-7.301l6.515-34h14.04c4.224 0 7.305 1.215 9.242 3.432 1.937 2.217 2.519 5.364 1.747 9.337-.319 1.637-.856 3.159-1.614 4.515-.759 1.357-1.75 2.624-2.972 3.748zm21.311 2.968l2.881-14.42c.328-1.688.208-2.942-.361-3.555-.57-.614-1.782-1.025-3.635-1.025h-5.79l-3.731 19h-7.244l6.515-33h7.244l-1.732 9h6.453c4.061 0 6.861.815 8.402 2.231s2.003 3.356 1.387 6.528l-3.031 15.241h-7.358zm40.259-11.178c-.318 1.637-.856 3.133-1.613 4.488-.758 1.357-1.748 2.598-2.971 3.722-1.458 1.364-3.078 1.927-4.86 2.507-1.782.581-4.053.461-6.812.461h-6.253l-1.732 10h-7.301l6.514-34h14.041c4.224 0 7.305 1.215 9.241 3.432 1.935 2.217 2.518 5.418 1.746 9.39zM95.919 54h-5.001l-2.727 14h4.442c2.942 0 5.136-.29 6.576-1.4 1.442-1.108 2.413-2.828 2.918-5.421.484-2.491.264-4.434-.66-5.458-.925-1.024-2.774-1.721-5.548-1.721zM38.934 54h-5.002l-2.727 14h4.441c2.943 0 5.136-.29 6.577-1.4 1.441-1.108 2.413-2.828 2.917-5.421.484-2.491.264-4.434-.66-5.458s-2.772-1.721-5.546-1.721z"></path>
             </svg>
@@ -57,7 +41,7 @@ $mem = number_format(memory_get_usage(true) / 1048576, 2);
         </li>
 
         <li>
-          <a href="http://validator.w3.org/check?uri=<?php echo $currentUrl; ?>">
+          <a class="html5" href="http://validator.w3.org/check?uri=<?php echo $currentUrl; ?>">
             <svg viewBox="0 0 128 128">
             <path d="M9.032 2l10.005 112.093 44.896 12.401 45.02-12.387 10.015-112.107h-109.936zm89.126 26.539l-.627 7.172-.276 3.289h-52.665000000000006l1.257 14h50.156000000000006l-.336 3.471-3.233 36.119-.238 2.27-28.196 7.749v.002l-.034.018-28.177-7.423-1.913-21.206h13.815000000000001l.979 10.919 15.287 4.081h.043v-.546l15.355-3.875 1.604-17.579h-47.698l-3.383-38.117-.329-3.883h68.939l-.33 3.539z"></path>
             </svg>
@@ -66,7 +50,7 @@ $mem = number_format(memory_get_usage(true) / 1048576, 2);
         </li>
 
         <li>
-          <a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $currentUrl; ?>&profile=css3&usermedium=all&warning=1&vextwarning=&lang=en">
+          <a class="css3" href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $currentUrl; ?>&profile=css3&usermedium=all&warning=1&vextwarning=&lang=en">
             <svg viewBox="0 0 128 128">
             <path d="M8.76 1l10.055 112.883 45.118 12.58 45.244-12.626 10.063-112.837h-110.48zm89.591 25.862l-3.347 37.605.01.203-.014.467v-.004l-2.378 26.294-.262 2.336-28.36 7.844v.001l-.022.019-28.311-7.888-1.917-21.739h13.883l.985 11.054 15.386 4.17-.004.008v-.002l15.443-4.229 1.632-18.001h-32.282999999999994l-.277-3.043-.631-7.129-.331-3.828h34.748999999999995l1.264-14h-52.926l-.277-3.041-.63-7.131-.332-3.828h69.281l-.331 3.862z"></path>
             </svg>

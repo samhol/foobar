@@ -19,10 +19,10 @@
    * @returns  {jQuery.fn} object for method chaining
    */
   $.fn.sphpTipso = function () {
-    console.log('tipso initializing...');
+    //console.log('tipso initializing...');
     return this.each(function () {
       var $this = $(this);
-      console.log('tipso initialized');
+      //console.log('tipso initialized');
       $this.tipso({
         background: '#33312b',
         titleBackground: '#111',
@@ -30,39 +30,6 @@
         titleColor: '#FAA523',
         width: 'auto',
         size: 'small'
-      });
-    });
-  };
-  /**
-   * Implements switchBoard functionality
-   *
-   * @memberOf jQuery.fn#
-   * @method   switchBoard
-   * @returns  {jQuery.fn} object for method chaining
-   */
-  $.fn.phpInfoTipso = function () {
-    console.log('tipso initializing...');
-    return this.each(function () {
-      var $this = $(this), 
-      $version = '<strong>PHP</strong> <var>' + $this.attr('data-version') + '</var>', 
-      $mem = $this.attr('data-mem'),
-      $time = $this.attr('data-time'),
-      $titleContent = $($version),
-      $content = $('<strong>Execution time:</strong> <var>' + $time + ' s</var><br><strong>Peak memory:</strong> <var>' + $mem + ' MB</var>');
-      
-      console.log('tipso initialized');
-      $this.tipso({
-        background: '#33312b',
-        titleBackground: '#111',
-        color: '#fff0c4',
-        titleColor: '#FAA523',
-        titleContent      : $titleContent,   
-        //contentElementId: 'php-info-tipso-content',
-        //titleContent      : $titleContent,     
-        content           : $content,
-        width: 'auto',
-        size: 'small'
-        
       });
     });
   };

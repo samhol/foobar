@@ -6,7 +6,7 @@ use Sphp\Html\Media\Icons\FA;
   <div class="cell small-12 large-auto">
     <section class="contact-information">
 
-      <h2>Contact information:</h6>
+      <h2>Contact information:</h2>
       <div class="media-object">
         <div class="media-object-section">
           <div class="thumbnail">
@@ -27,7 +27,7 @@ use Sphp\Html\Media\Icons\FA;
 
   <div class="cell small-12 large-shrink">
     <section class="contact-information">
-      <h2>Social media:</h6>
+      <h2>Social media:</h2>
       <ul class="social-icons">
         <li><a href="https://github.com/samhol">
             <i class="fab fa-github fa-fw" aria-hidden="true"></i>

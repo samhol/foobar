@@ -7,6 +7,8 @@ ini_set("display_errors", 1);
 
 require_once('samiholck/settings.php');
 
+use Sphp\Html\Document;
+
 $redirect = filter_input(INPUT_SERVER, 'REDIRECT_URL', FILTER_SANITIZE_URL);
 
 $cacheSuffix = str_replace(['.', '/'], ['-', ''], $redirect) . "-cache";
@@ -28,8 +30,10 @@ include('samiholck/templates/menus/topBar.php');
 
     <div class="mainContent small-auto cell"> 
       <?php
+
       use Sphp\Network\URL;
-      //$man_cache = "$cacheSuffix-content";
+
+//$man_cache = "$cacheSuffix-content";
       //if ($outputCache->start($man_cache) === false) {
       $router->execute(URL::getCurrentURL());
       //   $outputCache->end();
@@ -45,5 +49,12 @@ include('samiholck/templates/backToTopButton.php');
 //  $outputCache->end();
 //}
 
-$html->documentClose();
-
+use Sphp\Stdlib\StopWatch;
+$mem = number_format(memory_get_usage(true) / 1048576, 2);
+$time = number_format(StopWatch::getExecutionTime(), 2);
+$phpScript = new \Sphp\Html\Scripts\ScriptCode();
+$phpScript[] = "var php={version: '" . phpversion() . "'};";
+$phpScript[] = "php.memory=" . $mem . ";";
+$phpScript[] = "php.execTime=" . $time . ";";
+Document::html()->scripts()->append($phpScript);
+Document::html()->documentClose();
