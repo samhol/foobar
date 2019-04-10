@@ -48,6 +48,9 @@
         //width: 70px;
         color: #fff;
         text-decoration: none;
+        svg, path {
+          stroke: $burn-color;
+        }
         &:hover {
           background: rgba(#000, .95);
           color: rgba($burn-color, .9);

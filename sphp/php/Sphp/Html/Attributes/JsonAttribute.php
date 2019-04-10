@@ -54,6 +54,17 @@ class JsonAttribute extends AbstractAttribute {
   public function __destruct() {
     unset($this->data, $this->parser);
   }
+  public function __toString(): string {
+    $output = '';
+    if ($this->isVisible()) {
+      $output .= $this->getName();
+      if (!$this->isEmpty()) {
+        $value = $this->getValue();
+          $output .= "='$value'";
+      }
+    }
+    return $output;
+  }
 
   public function isVisible(): bool {
     return $this->isDemanded() || !empty($this->data);

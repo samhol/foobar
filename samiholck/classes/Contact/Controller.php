@@ -15,10 +15,7 @@ use Sphp\Validators\FormValidator;
 use Sphp\Validators\Email;
 use Sphp\Validators\NotEmpty;
 use Sphp\Security\ReCAPTCHAv3;
-use Sphp\Network\Headers\Location;
 use Sphp\Stdlib\Datastructures\DataObject;
-use Sphp\Stdlib\Parsers\Parser;
-use Sphp\Html\Foundation\Sites\Forms\GridForm;
 
 /**
  * Implementation of Controller

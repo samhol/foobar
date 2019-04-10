@@ -2,5 +2,13 @@
 .sphp.responsive-bar-container {
   .top-bar, .title-bar {
     @include shadow(0px 3px 8px 4px #888);
+    .menu {
+      li {
+        a {
+          @include transition(all, 0.6s, ease-in-out);
+          
+        }
+      }
+    }
   }
 }

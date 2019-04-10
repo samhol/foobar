@@ -44,11 +44,6 @@ class Mailer {
   private $textBody;
 
   /**
-   * @var ReflectionClass
-   */
-  private $inputReflector;
-
-  /**
    * Constructs a new instance
    * 
    * @param Message $message
@@ -79,9 +74,6 @@ class Mailer {
    * @throws BadMethodCallException if the public method does not exixt
    */
   public function __call(string $name, array $arguments) {
-    if ($this->inputReflector === null) {
-      $this->inputReflector = new \ReflectionClass($this);
-    }
     $ref = ReflectionClass($this);
     if (!$ref->hasMethod($name)) {
       $inputType = get_class($this->message);
@@ -96,7 +88,6 @@ class Mailer {
       return $result;
     }
   }
-
 
   public function createMailBody(): MimeMessage {
     $body = new MimeMessage();

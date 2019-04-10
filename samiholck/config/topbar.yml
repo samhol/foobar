@@ -4,6 +4,9 @@ items:
   - link: <i class="fas fa-home"></i><span class="show-for-sr">Back to home</span>
     href: /
     class: icon-link
+    tipso: 
+      position: bottom-right
+      title: Back to home
   - link: <i class="fas fa-calendar-alt"></i> <span class="hide-for-medium">My calendar</span>
     href: /calendar
     class: icon-link

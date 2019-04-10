@@ -11,6 +11,8 @@ $sphp-menuitem-color: #efefef;
 $sphp-menuitem-color-active: #fff;
 $sphp-menuitem-font-color: #f4f4f4;
 $sphp-menuitem-font-color-active: #ffffff;
+
+
 @import url('https://fonts.googleapis.com/css?family=Mina|Roboto');
 $highlight-color: $burn-color;
 
@@ -81,11 +83,8 @@ $highlight-color: $burn-color;
 @import "site/all";
 
 body {
-
   background-color: rgba(#fff, .7);
   background-image: url('/samiholck/pics/low-contrast-linen.png');
   background-repeat: repeat; 
   background-position: top left;
-  //background: rgba(255, 255, 255, 0.75);
-
 }

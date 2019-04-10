@@ -12,25 +12,28 @@
   'use strict';
 
   /**
-   * Implements switchBoard functionality
+   * Implements Tipso functionality
    *
    * @memberOf jQuery.fn#
-   * @method   switchBoard
+   * @method   sphpTipso
    * @returns  {jQuery.fn} object for method chaining
    */
   $.fn.sphpTipso = function () {
     //console.log('tipso initializing...');
     return this.each(function () {
-      var $this = $(this);
+      var $this = $(this), $options;
       //console.log('tipso initialized');
-      $this.tipso({
-        background: '#33312b',
-        titleBackground: '#111',
-        color: '#fff0c4',
-        titleColor: '#FAA523',
-        width: 'auto',
-        size: 'small'
-      });
+      //console.log($this.hasAttr("data-sphp-tipso-options"));
+      if ($this.hasAttr("data-sphp-tipso-options")) {
+        try {
+          $options = JSON.parse($this.attr('data-sphp-tipso-options'));
+          $this.tipso($options);
+        } catch (err) {
+          $this.tipso({useTitle: true});
+        }
+      } else {
+        $this.tipso({useTitle: true});
+      }
     });
   };
 }(jQuery));

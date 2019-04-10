@@ -3,7 +3,7 @@
 namespace Sphp\Manual;
 
 md(<<<MD
-#WHY? <small>what is the purpose of....</small>
+# WHY? <small>what is the purpose of....</small>
 
 <blockquote markdown="1">
 Choose Life. Choose a job. Choose a career. Choose a family. Choose a fucking 
@@ -22,7 +22,7 @@ I chose somethin’ else. And the reasons? There are no reasons. Who needs reaso
 when you’ve got heroin?” 
 </blockquote>
 
-##Have you seen this before??
+## Have you seen this before??
 
 This citing is a part of the original movie shooting screenplay of [Trainspotting](http://www.imdb.com/title/tt0117951/){target="_blank"}. Screenplay
 is based on the Novel by [Irvine Welsh](http://www.irvinewelsh.net/), published by Norton (ISBN 0-393-31480-4).     

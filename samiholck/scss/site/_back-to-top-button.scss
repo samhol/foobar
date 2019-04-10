@@ -15,13 +15,12 @@ div.sphp-back-to-top-button {
   font-size: rem-calc(80);
   color: #222;
   svg, i {
-    cursor: pointer;
-    //@include single-text-shadow(0, 0, 4px, 2px, #ff8000);
-    //@include text-shadow(#333 0px 0px 3px, rgba(#FF8000, 0.6) 2px 2px 1px, rgba(#FF8000, 0.2) -2px -2px 1px);
     @include transition(all, 0.5s, ease-in-out);
     @include opacity(0.6);
+    cursor: pointer;
+    stroke: #ff8000;
     &:hover {
-      color: #ec5840;
+      color: #6a572a;
       @include opacity(0.75);
       @include transform(rotate(360deg));
     }

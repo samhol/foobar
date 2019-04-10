@@ -28,7 +28,7 @@ class MenuLinkBuilder {
   private $defaultTarget = null;
 
   /**
-   * @var type 
+   * @var string 
    */
   private $currentPage;
 
@@ -37,6 +37,9 @@ class MenuLinkBuilder {
    * @var callable|null 
    */
   private $activator;
+  private $attributes = [];
+
+  //public function set
 
   /**
    * 
@@ -108,7 +111,7 @@ class MenuLinkBuilder {
    * @return string|null
    */
   protected function parseTarget(array $linkData): ?string {
-    return array_key_exists('target', $linkData) ? $linkData['target'] : $this->getDefaultTarget();
+    return array_key_exists('target', $linkData) ? $linkData['target'] : null;
   }
 
   /**
@@ -131,9 +134,10 @@ class MenuLinkBuilder {
   }
 
   /**
+   * Creates a new menu link object from data
    * 
    * @param  array $linkData
-   * @return MenuLink
+   * @return MenuLink parsed menu link object
    */
   public function parseLink(array $linkData): MenuLink {
     $href = $this->parseHref($linkData);

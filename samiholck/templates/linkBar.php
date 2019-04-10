@@ -18,7 +18,7 @@ foreach ($links as $link) {
     $hyperLink->addCssClass('disabled');
   } else {
     $hyperLink = $linkBar->appendHyperlink($link['href'], $link['text']);
-    $hyperLink->setAttribute('data-sphp-tipso')->setAttribute('data-tipso', $link['data-tipso'])->setAttribute('data-tipso-title', $link['data-tipso-title'])->setAttribute('title', 'foobar');
+    //$hyperLink->setAttribute('data-sphp-tipso')->setAttribute('data-tipso', $link['data-tipso'])->setAttribute('data-tipso-title', $link['data-tipso-title'])->setAttribute('title', 'foobar');
   }
 }
 

@@ -140,7 +140,11 @@ $sitemap-border-highlight-color: rgba(70, 70, 70, 0.5);
       li {
         float: left;
         a {
+          &.tipso_style {
+            border-bottom: none;
+          }
           svg {
+            @include transition(all, 0.4s, ease-in-out);
             width: rem-calc(35);
             height: rem-calc(35);
             fill: #ccc;
@@ -149,10 +153,11 @@ $sitemap-border-highlight-color: rgba(70, 70, 70, 0.5);
           text-align: center;
           padding: 0 0.4rem;
           text-decoration: none;
-        }
-        a:hover {
-          svg {
-            fill: #aaa;
+          &:hover {
+            svg, path {
+              fill: #aaa;
+              stroke: $burn-color;
+            }
           }
         }
       }
