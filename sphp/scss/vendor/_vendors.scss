@@ -18,6 +18,10 @@
 
 @import "../../../node_modules/tipso/src/tipso"; 
 
+.tipso_style {
+  border-bottom: none;
+}
+
 
 @import "../../../node_modules/ion-rangeslider/css/ion.rangeSlider"; 
 @import "../../../node_modules/motion-ui/src/motion-ui"; 

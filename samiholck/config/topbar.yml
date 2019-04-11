@@ -1,23 +1,20 @@
 ---
 menu:
 items:
-  - link: <i class="fas fa-home"></i><span class="show-for-sr">Back to home</span>
+  - link: <i class="fas fa-home"></i> <span class="hide-for-medium">Back to home</span>
     href: /
-    class: icon-link
     tipso: 
       position: bottom-right
       title: Back to home
   - link: <i class="fas fa-calendar-alt"></i> <span class="hide-for-medium">My calendar</span>
     href: /calendar
-    class: icon-link
   - link: Contacts
     href: /contact
-    class: icon-link
-  - link: Who am I?
+  - link: Who <span class="hide-for-medium">am I?</span>
     href: /who
   - menu: Projects
     items:
-    - separator: Current . . .
+    - separator: Current . . .<i class="fas fa-thumbs-up fa-pull-right"></i>
     - link: SPHPlayground
       href: http://playground.samiholck.com/
     - link: Raision Veneseura

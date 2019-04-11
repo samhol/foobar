@@ -6,10 +6,17 @@
  * @license   https://opensource.org/licenses/MIT The MIT License
  */
 
+@import "logo-area";
+@import "topbar";
 @import "intro";
 @import "main-content";
 @import "social-icons";
 @import "linkbar";
+
+@import "contact-form";
+@import "footer";
+@import "back-to-top-button";
+
 .tipso_bubble {
   @include shadow;
   

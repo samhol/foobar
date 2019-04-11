@@ -58,16 +58,6 @@ class MenuBuilder {
 
   /**
    * 
-   * @param  string|null $target
-   * @return $this for a fluent interface
-   */
-  public function setDefaultTarget(string $target = null) {
-    $this->linkBuilder->setDefaultTarget($target);
-    return $this;
-  }
-
-  /**
-   * 
    * @param  array $contentData
    * @param  Menu $instance
    * @return Menu
@@ -90,8 +80,6 @@ class MenuBuilder {
       }
       if (array_key_exists('class', $item)) {
         $object->addCssClass($item['class']);
-      } else {
-        //var_dump($item);
       }
     }
     return $instance;

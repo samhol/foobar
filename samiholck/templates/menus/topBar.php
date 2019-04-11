@@ -7,6 +7,7 @@ use Sphp\Html\Foundation\Sites\Core\ThrowableCalloutBuilder;
 use Sphp\Stdlib\Parsers\Parser;
 use Sphp\Html\Media\Icons\IconButtons;
 use Sphp\Html\Adapters\TipsoAdapter;
+
 $menuData = Parser::fromFile('samiholck/config/topbar.yml');
 
 try {
@@ -18,10 +19,10 @@ try {
   $leftDrop->setOption('autoHeight', true);
   $link = $leftDrop->appendLink('/', 'home');
   $tip = new TipsoAdapter($link);
-  
-$tip['titleContent'] = 'title';
-$tip['content'] = 'content';
-$tip['position'] = 'bottom';
+
+  $tip['titleContent'] = 'title';
+  $tip['content'] = 'content';
+  $tip['position'] = 'bottom';
   $builder = new MenuBuilder(new MenuLinkBuilder(trim($redirect, '/')));
   $builder->buildMenu($menuData, $leftDrop);
   $navi->topbar()->left()->append($leftDrop);

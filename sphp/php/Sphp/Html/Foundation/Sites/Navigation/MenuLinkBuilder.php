@@ -10,6 +10,9 @@
 
 namespace Sphp\Html\Foundation\Sites\Navigation;
 
+use Sphp\Html\Adapters\TipsoAdapter;
+use Sphp\Exceptions\InvalidArgumentException;
+
 /**
  * Description of MenuLinkBuilder
  *
@@ -37,7 +40,6 @@ class MenuLinkBuilder {
    * @var callable|null 
    */
   private $activator;
-  private $attributes = [];
 
   //public function set
 
@@ -93,14 +95,16 @@ class MenuLinkBuilder {
 
   /**
    * 
-   * @param  array $linkData
+   * 
+   * @param array $linkData
    * @return string
+   * @throws InvalidArgumentException
    */
   protected function parseHref(array $linkData): string {
     if (array_key_exists('href', $linkData)) {
       $href = $linkData['href'];
     } else {
-      $href = \Sphp\Network\URL::getRootAsString();
+      throw new InvalidArgumentException('href is missing');
     }
     return $href;
   }
@@ -133,6 +137,11 @@ class MenuLinkBuilder {
     return $text;
   }
 
+  public function setTipso() {
+    
+  }
+
+
   /**
    * Creates a new menu link object from data
    * 
@@ -147,6 +156,10 @@ class MenuLinkBuilder {
     if (is_callable($this->activator)) {
       $t = $this->getActivator();
       $link->setActive($t($linkData));
+    }
+    if (array_key_exists('tipso', $linkData)) {
+      $tipso = new TipsoAdapter($link);
+      $tipso->setTitle($linkData['tipso']['title']);
     }
     return $link;
   }

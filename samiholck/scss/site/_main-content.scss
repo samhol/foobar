@@ -1,7 +1,3 @@
-
-@import "logo-area";
-@import "topbar";
-
 .mainContent {
   @include breakpoint(small) {
     @include border-radius(3px);
@@ -98,7 +94,4 @@
   }
 }
 
-@import "contact-form";
-@import "footer";
-@import "back-to-top-button";
 
