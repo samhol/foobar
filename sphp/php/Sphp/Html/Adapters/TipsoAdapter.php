@@ -11,7 +11,6 @@
 namespace Sphp\Html\Adapters;
 
 use Sphp\Html\Component;
-use Sphp\Html\IdentifiableContent;
 use Sphp\Html\Attributes\JsonAttribute;
 
 /**
@@ -26,7 +25,7 @@ use Sphp\Html\Attributes\JsonAttribute;
 class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
 
   /**
-   * @var array
+   * @var JsonAttribute
    */
   private $config = [];
 
@@ -39,8 +38,9 @@ class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
   public function __construct(Component $component, string $content = null) {
     parent::__construct($component);
     $component->setAttribute('data-sphp-tipso');
+    $this->config = new JsonAttribute('data-sphp-tipso-options');
     $component->attributes()
-            ->setInstance(new JsonAttribute('data-sphp-tipso-options'));
+            ->setInstance($this->config);
     if ($content !== null) {
       $this->setTitle($content);
     }
@@ -52,27 +52,35 @@ class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
   }
 
   /**
-   * Sets the value of the title attribute
+   * Sets the value of the title
    *
    * @param  string|null $title the value of the title attribute
    * @return $this for a fluent interface
-   * @link   http://www.w3schools.com/tags/att_global_title.asp title attribute
    */
   public function setTitle(string $title = null) {
     $this['titleContent'] = $title;
-    if ($title === null) {
-      $this['useTitle'] = false;
-    }
     return $this;
   }
 
   /**
+   * Sets the content
+   *
+   * @param  string|null $content the content
+   * @return $this for a fluent interface
+   */
+  public function setContent(string $content = null) {
+    $this['content'] = $content;
+    return $this;
+  }
+
+  /**
+   * Checks whether an option exists
    * 
    * @param  mixed $name option name
    * @return bool
    */
   public function offsetExists($name): bool {
-    return array_key_exists($name, $this->config);
+    return $this->config->offsetExists($name);
   }
 
   /**
@@ -82,10 +90,7 @@ class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
    * @return scalar|null option value or null if not present
    */
   public function offsetGet($name) {
-    if ($this->offsetExists($name)) {
-      return $this->config[$name];
-    }
-    return null;
+    return $this->config->offsetGet($name);
   }
 
   /**
@@ -96,18 +101,7 @@ class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
    * @throws InvalidArgumentException if the name or the value is invalid
    */
   public function offsetSet($name, $value): void {
-    if (!is_string($name)) {
-      throw new InvalidArgumentException('Invalid type given for option name');
-    }
-    if (!is_scalar($value) && $value !== null) {
-      throw new InvalidArgumentException('Invalid type given for option value');
-    }
-    if ($value === null) {
-      $this->offsetUnset($name);
-    } else {
-      $this->config[$name] = $value;
-    }
-    $this->getComponent()->setAttribute('data-sphp-tipso-options', $this->config);
+    $this->config->offsetSet($name, $value);
   }
 
   /**
@@ -117,9 +111,7 @@ class TipsoAdapter extends AbstractComponentAdapter implements \ArrayAccess {
    * @return void
    */
   public function offsetUnset($name): void {
-    if ($this->offsetExists($name)) {
-      unset($this->config[$name]);
-    }
+    $this->config->offsetUnset($name);
   }
 
 }
