@@ -141,7 +141,6 @@ class MenuLinkBuilder {
     
   }
 
-
   /**
    * Creates a new menu link object from data
    * 
@@ -158,8 +157,10 @@ class MenuLinkBuilder {
       $link->setActive($t($linkData));
     }
     if (array_key_exists('tipso', $linkData)) {
-      $tipso = new TipsoAdapter($link);
-      $tipso->setTitle($linkData['tipso']['title']);
+      $tip = new TipsoAdapter($link);
+      $tip['content'] = 'content';
+      $tip['position'] = 'bottom';
+      $tip->setTitle($linkData['tipso']['title']);
     }
     return $link;
   }

@@ -10,7 +10,7 @@ use Sphp\Html\Media\Icons\FA;
       <div class="media-object">
         <div class="media-object-section">
           <div class="thumbnail">
-            <img style="height:100px" src="samiholck/pics/face-modified.jpg" alt="Photo of Sami Holck">
+            <img style="height:100px" src="/samiholck/pics/face-modified.jpg" alt="Photo of Sami Holck">
           </div>
         </div>
         <div class="media-object-section main-section">

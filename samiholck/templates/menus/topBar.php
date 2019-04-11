@@ -17,12 +17,6 @@ try {
   $redirect = filter_input(INPUT_SERVER, 'REDIRECT_URL', FILTER_SANITIZE_URL);
   $leftDrop = ResponsiveMenu::drilldownDropdown('medium');
   $leftDrop->setOption('autoHeight', true);
-  $link = $leftDrop->appendLink('/', 'home');
-  $tip = new TipsoAdapter($link);
-
-  $tip['titleContent'] = 'title';
-  $tip['content'] = 'content';
-  $tip['position'] = 'bottom';
   $builder = new MenuBuilder(new MenuLinkBuilder(trim($redirect, '/')));
   $builder->buildMenu($menuData, $leftDrop);
   $navi->topbar()->left()->append($leftDrop);

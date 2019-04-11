@@ -3,13 +3,16 @@
   .top-bar, .title-bar {
     @include shadow(0px 3px 8px 4px #888);
     .menu {
-      li {
+      li, li.is-dropdown-submenu-parent.is-active {
         a {
-          @include transition(all, 0.6s, ease-in-out);
+          @include transition(all, 0.4s, ease-in-out);
           &:hover {
             color: $burn-color;
           }
         }
+      }
+      li.is-dropdown-submenu-parent.is-active > a {
+        color: $burn-color;
       }
     }
   }
