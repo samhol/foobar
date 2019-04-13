@@ -17,6 +17,7 @@ namespace Sphp\Html\Foundation\Sites\Navigation;
 
     $bi = new IconButtons();
     $bi->github('https://github.com/samhol/SPHP-framework', 'Gihub repository');
+    $bi->stackoverflow('https://stackoverflow.com/users/6288052/sami-holck', 'stackoverflow page');
     $bi->facebookF('https://www.facebook.com/Sami.Petteri.Holck.Playground/', 'Facebook page');
     $bi->twitter('https://twitter.com/SPHPframework', 'Twitter page');
     $bi->addCssClass('radius')->printHtml();

@@ -49,8 +49,6 @@ $daterange = new \DatePeriod($begin, $interval, $end);
 use Sphp\Html\Foundation\Sites\Navigation\Pagination\Page;
 use Sphp\Html\Tags;
 
-
-
 //$exercises = FitNotes::fromCsv('manual/snippets/FitNotes.csv');
 function createUrl($date): string {
   return "/calendar/" . $date->format("Y/m");

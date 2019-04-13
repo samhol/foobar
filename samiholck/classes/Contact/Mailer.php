@@ -15,7 +15,6 @@ use Zend\Mail\Message;
 use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Mime;
 use Zend\Mime\Part as MimePart;
-use Sphp\Exceptions\InvalidArgumentException;
 use Sphp\Stdlib\Parsers\Parser;
 use ReflectionClass;
 

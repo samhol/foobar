@@ -81,6 +81,9 @@ class View {
     $phone->setErrorMessage('Invalid Phone number given');
     $phone->setPattern('phone');
 
+    $phoneRow = new BasicRow();
+    $phoneRow->appendCell($phone)->small(12);
+    $form->append($phoneRow);
 
     $message = ValidableInlineInput::textarea('message');
     $message->setLabel('Message body');
@@ -100,8 +103,7 @@ class View {
 
 
     $contactRow = new BasicRow();
-    $contactRow->appendCell($email)->small(12)->medium(6);
-    $contactRow->appendCell($phone)->small(12)->medium(6);
+    $contactRow->appendCell($email)->small(12);
     $form->append($contactRow);
 
 

@@ -4,10 +4,17 @@ items:
   - link: <i class="fas fa-home"></i> <span class="hide-for-medium">Back to home</span>
     href: /
     tipso: 
-      position: bottom-right
-      title: Back to home
+      size: small
+      position: bottom
+      titleContent: Frontpage
+      content: Back to home
   - link: <i class="fas fa-calendar-alt"></i> <span class="hide-for-medium">My calendar</span>
     href: /calendar
+    tipso: 
+      size: small
+      position: bottom
+      titleContent: Calendar
+      content: My calendar
   - link: Contacts
     href: /contact
   - link: Who <span class="hide-for-medium">am I?</span>
