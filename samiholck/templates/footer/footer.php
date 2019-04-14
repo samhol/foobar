@@ -5,7 +5,7 @@ use Sphp\Stdlib\StopWatch;
 
 $currentUrl = URL::getCurrentURL();
 ?>
-<div class="manual-footer">
+<div class="site-footer">
   <div class="sitemap-container">
     <footer class="sitemap">
       <div class="grid-container">
@@ -17,11 +17,9 @@ $currentUrl = URL::getCurrentURL();
       </div>
     </footer>
   </div>
-  <div class="social-container">
-    <div class="grid-container">
-      <?php include 'samiholck/templates/contact-information.php'; ?>
-    </div>
-  </div>
+  <footer class="social-container">
+    <?php include 'samiholck/templates/contact-information.php'; ?>
+  </footer>
   <div class="copyright-details-container">
     <footer class="copyright-details">
       <p><span class="separator">&lt;{[</span>

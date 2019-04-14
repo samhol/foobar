@@ -19,7 +19,7 @@ use Sphp\Html\Foundation\Sites\Grids\DivGrid;
 use Sphp\Html\Foundation\Sites\Grids\ContainerCell;
 
 /**
- * Description of View
+ * Implements a contact form view
  *
  * @author  Sami Holck <sami.holck@gmail.com>
  * @license https://opensource.org/licenses/MIT MIT License
@@ -55,7 +55,7 @@ class View {
     $form->useValidation(true);
     $form->setMethod('post');
     $form->setAction('/samiholck/contact-form/process.php');
-
+    $form->append('<h2>Contact form</h2>');
     $email = ValidableInlineInput::text('email');
     $email->setLeftInlineLabel('<i class="fas fa-at"></i>');
     $email->setLabel('Email address');
@@ -68,7 +68,6 @@ class View {
     $name->setLeftInlineLabel('<i class="fa fa-user"></i>');
     $name->setLabel('Name');
     $name->setPlaceholder('Name or Company');
-
 
     $nameRow = new BasicRow();
     $nameRow->appendCell($name)->small(12);
@@ -88,10 +87,9 @@ class View {
     $message = ValidableInlineInput::textarea('message');
     $message->setLabel('Message body');
     $message->setPlaceholder('Message body . . .');
-    $message->setRows(6);
+    $message->setRows(4);
     $message->setErrorMessage('A message is required');
     $message->setRequired($required);
-
 
     $messageTitle = ValidableInlineInput::text('subject');
     $messageTitle->setLeftInlineLabel('<i class="fas fa-heading"></i>');
@@ -100,12 +98,9 @@ class View {
     $messageTitle->setErrorMessage('Message title is required');
     $messageTitle->setRequired($required);
 
-
-
     $contactRow = new BasicRow();
     $contactRow->appendCell($email)->small(12);
     $form->append($contactRow);
-
 
     $carRow = new BasicRow();
     $carRow->appendCell($messageTitle)->small(12);

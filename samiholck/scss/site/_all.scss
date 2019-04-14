@@ -14,18 +14,18 @@
 @import "linkbar";
 
 @import "contact-form";
-@import "footer";
+@import "footer/footer";
 @import "back-to-top-button";
 
 .tipso_bubble {
   @include shadow;
-  
+
   //@include opacity(.92);
 }
 .tipso_title {
   padding-top: rem-calc(6);
   @include shadow;
-	border-bottom: solid 1px $burn-color;
+  border-bottom: solid 1px $burn-color;
 }
 .tipso_content {
   word-wrap: normal;
