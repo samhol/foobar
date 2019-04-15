@@ -17,6 +17,8 @@ use Sphp\DateTime\Calendars\Diaries\Schedules\RepeatingTask;
 use Sphp\DateTime\Calendars\Diaries\MutableDiary;
 use Sphp\DateTime\Calendars\Diaries\Sports\FitNotes;
 use Sphp\Stdlib\Parsers\Parser;
+use Sphp\DateTime\Calendars\Diaries\Holidays\BirthDay;
+use Sphp\DateTime\Calendars\Diaries\Holidays\HolidayInterface;
 
 /**
  * Implementation of Model
@@ -28,26 +30,65 @@ use Sphp\Stdlib\Parsers\Parser;
  */
 class Model {
 
-  public function getBirthdays() {
-    $data = Parser::fromFile('samiholck/calendar/data/birthdays.yml');
-    echo '<pre>';
-    $diary = new MutableDiary;
+  /**
+   * @var MutableDiary
+   */
+  private $diary;
+
+  public function __construct(MutableDiary $diary = null) {
+    if ($diary === null) {
+      $diary = new MutableDiary;
+    }
+    $this->diary = $diary;
+  }
+
+  public function __destruct() {
+    unset($this->diary);
+  }
+
+  public function parseFromYml(string $path) {
+    $data = Parser::fromFile($path);
     foreach ($data as $birthDayData) {
+      $note = null;
       if (array_key_exists('birthday', $birthDayData)) {
-       $diary->insertLog($this->createBirthday($birthDayData));
+        $note = $this->createBirthday($birthDayData);
+      }
+      if (array_key_exists('annual-note', $birthDayData)) {
+        $note = $this->createAnnual($birthDayData);
+      }
+      if ($note instanceof HolidayInterface) {
+
+        if (array_key_exists('flagday', $birthDayData)) {
+          $note->isFlagDay($birthDayData['flagday']);
+        }
+        if (array_key_exists('national-holiday', $birthDayData)) {
+          $note->isFlagDay($birthDayData['national-holiday']);
+        }
+        $this->diary->insertLog($note);
       }
     }
   }
-  
-  public function createBirthday(array $data): \Sphp\DateTime\Calendars\Diaries\Holidays\BirthDay {
-    $birthDay = Holidays::birthday($data['dob'], $data['name']);
-      if (array_key_exists('flagday', $data)) {
-        $birthDay->setFlagDay($data['flagday']);
-      }
-      if (array_key_exists('dod', $data)) {
-        $birthDay->getPerson()->setDateOfDeath($data['dod']);
-      }
-      return $birthDay;
+
+  public function createBirthday(array $data): BirthDay {
+    $birthDay = Holidays::birthday($data['dob'], $data['birthday']);
+    if (array_key_exists('flagday', $data)) {
+      $birthDay->setFlagDay($data['flagday']);
+    }
+    if (array_key_exists('dod', $data)) {
+      $birthDay->getPerson()->setDateOfDeath($data['dod']);
+    }
+    return $birthDay;
+  }
+
+  public function createAnnual(array $data): HolidayInterface {
+    $noteName = $data['annual-note'];
+    if (array_key_exists('pattern', $data)) {
+      $birthDay = Holidays::varyingAnnual($data['pattern'], $noteName);
+    }
+    if (array_key_exists('month', $data) && array_key_exists('day', $data)) {
+      $birthDay = Holidays::annual($data['month'], $data['day'], $noteName);
+    }
+    return $birthDay;
   }
 
   public function getDiaries(int $year, int $month) {

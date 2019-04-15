@@ -8,6 +8,6 @@ $data = Parser::fromFile('samiholck/calendar/data/birthdays.yml');
 echo '<pre>';
 $diary = new MutableDiary;
 $model = new Model();
-$model->getBirthdays();
+$model->parseFromYml('samiholck/calendar/data/birthdays.yml');
 print_r($model);
 echo '</pre>';
