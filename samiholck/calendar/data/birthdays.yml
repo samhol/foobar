@@ -1,0 +1,141 @@
+## Birthdays
+---
+- birthday:
+  name: Sami, Holck
+  dob: 1975-9-16
+- birthday:
+  name: Ella, Lisko
+  dob: 1977-12-23
+- birthday:
+  name: Leena, Holck
+  dob: 1947-7-21
+- birthday:
+  name: Vilho, Koivisto
+  dob: 1918-1-7
+  dod: 2016-11-30
+  
+- birthday:
+  name: Johan Ludvig, Runeberg
+  dob: 1804-2-5
+  dod: May 6, 1877
+  flagday: Finland
+- birthday:
+  name: Minna, Canth
+  dob: 1844-4-19
+  dod: 12 May 1897
+  flagday: Finland
+- birthday:
+  name: Carl Gustaf Emil, Mannerheim
+  dob: 1867-6-4
+  dod: January 27, 1951
+  flagday: Finland
+- birthday:
+  name: Eino, Leino
+  dob: 1878-7-6
+  dod: January 10, 1926
+  flagday: Finland
+- birthday:
+  name: Aleksis, Kivi
+  dob: 1834-10-10
+  dod: 1872-12-31
+  flagday: Finland
+- birthday:
+  name: Jean, Sibelius
+  dob: 1865-12-8
+  dod: 1957-9-20
+  flagday: Finland
+- birthday:
+  name: J. V., Snellman
+  dob: 1806-5-12
+  dod: 1881-7-4
+  flagday: Finland
+  
+- annual-note: New Year's Day
+  month: 1
+  day: 1
+  national-holiday: Finland
+
+- annual-note: Epiphany
+  month: 6
+  day: 1
+  national-holiday: Finland
+ 
+- annual-note: Day of Kalevala
+  month: 2
+  day: 28
+  flagday: Finland
+  
+- annual-note: Day of Equality
+  month: 4
+  day: 19
+  not: 
+    before: 2007-4-19
+  flagday: Finland 
+ 
+- annual-note: National War Veterans' Day
+  month: 4
+  day: 27
+  flagday: Finland
+  
+- annual-note: May Day
+  month: 5
+  day: 1
+  national-holiday: Finland
+  flagday: Finland
+  
+- annual-note: Europe Day
+  month: 5
+  day: 9
+  flagday: Finland
+  
+- annual-note: Mothers's Day
+  pattern: 'May %d second sunday'
+  flagday: Finland
+  
+- annual-note: Memorial day
+  pattern: 'May %d third sunday'
+  flagday: Finland
+  
+- annual-note: The Flag Day of the Finnish Defence Forces
+  month: 6
+  day: 4
+  flagday: Finland
+   
+- annual-note: Midsummer's Eve
+  pattern: '%d-6-19 next Saturday'
+  flagday: Finland
+  national-holiday: Finland
+  
+
+- annual-note: Day of Finnish literature
+  month: 10
+  day: 10
+
+- annual-note: All Saints Day
+  pattern: '%d-11-30 next Saturday'
+  national-holiday: Finland
+  
+- annual-note: Father's Day
+  pattern: 'November %d second sunday'
+  flagday: Finland
+
+- annual-note: Independence Day of Finland
+  month: 12
+  day: 6
+  flagday: Finland
+  national-holiday: Finland
+
+
+- annual-note: Christmas Eve
+  month: 12
+  day: 24
+  
+- annual-note: Christmas Day
+  month: 12
+  day: 25
+  national-holiday: Finland
+  
+- annual-note: Boxing Day
+  month: 12
+  day: 26
+  national-holiday: Finland

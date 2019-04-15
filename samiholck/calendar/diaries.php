@@ -19,7 +19,7 @@ if (!isset($year)) {
 //$easter = new EasterHolidays($year);
 $fi = new HolidayDiary();
 
-$fi->insertLog(Logs::annual(2,29, 'Sami, Holck'));
+$fi->insertLog(Logs::annual(2, 29, 'Sami, Holck'));
 $fi->insertLog(Holidays::birthday('1975-9-16', 'Sami, Holck'));
 $fi->insertLog(Holidays::birthday('1977-12-23', 'Ella, Lisko'));
 $fi->insertLog(Holidays::birthday('1947-7-21', 'Leena, Holck'));
@@ -93,11 +93,11 @@ $liucon->dateRule()
 $workCalendar->insertLog($liucon);
 //$liucon1 = \Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask::from('R50/2018-05-09T07:00:00Z/P1D', 'PT7H30M');
 //$liucon1->setDescription('Working as an employee for Liucon OY');
-/*$liucon1->dateConditions()
-        ->isWeekly(1, 2, 3, 4, 5)
-        ->isAfter('2018-5-9')
-        ->isBefore('2018-8-11')
-        ->isNotOneOf('2018-7-19', '2018-7-20');*/
+/* $liucon1->dateConditions()
+  ->isWeekly(1, 2, 3, 4, 5)
+  ->isAfter('2018-5-9')
+  ->isBefore('2018-8-11')
+  ->isNotOneOf('2018-7-19', '2018-7-20'); */
 //$workCalendar->insertLog($liucon1);
 $workCalendar->insertLog(new \Sphp\DateTime\Calendars\Diaries\Schedules\SingleTask('2018-5-20 11:00 EET', '2018-5-20 12:00 EET'));
 //var_dump($exercises instanceof \Sphp\DateTime\Calendars\Diaries\DiaryInterface);

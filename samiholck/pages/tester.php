@@ -1,10 +1,13 @@
 <?php
 
-use Sphp\Html\Foundation\Sites\Navigation\MenuBuilder;
+use Sphp\DateTime\Calendars\Diaries\MutableDiary;
 use Sphp\Stdlib\Parsers\Parser;
-
-$menuData = Parser::fromFile('samiholck/config/topbar.yml');
+use Sphp\DateTime\Calendars\Diaries\Holidays\Holidays;
+use Sphp\Samiholck\Calendar\Model;
+$data = Parser::fromFile('samiholck/calendar/data/birthdays.yml');
 echo '<pre>';
-print_r($menuData);
+$diary = new MutableDiary;
+$model = new Model();
+$model->getBirthdays();
+print_r($model);
 echo '</pre>';
-$menuBuilder = new MenuBuilder();
