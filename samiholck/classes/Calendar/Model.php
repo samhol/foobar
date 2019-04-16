@@ -68,6 +68,34 @@ class Model {
       }
     }
   }
+  public function createTask(array $data): \Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask {
+    $period = \Sphp\DateTime\Period::fromISO($data['period']);
+    $duration = \Sphp\DateTime\Intervals::fromString($data['duration']);
+    $task = new \Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask($period, $duration);
+    /*$birthDay = Holidays::birthday($data['dob'], $data['birthday']);
+    if (array_key_exists('flagday', $data)) {
+      $birthDay->setFlagDay($data['flagday']);
+    }
+    if (array_key_exists('dod', $data)) {
+      $birthDay->getPerson()->setDateOfDeath($data['dod']);
+    }*/
+    return $task;
+  }
+  
+  public function createTask1(array $data): \Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask {
+    $period = \Sphp\DateTime\Period::fromISO($data['period']);
+    $duration = \Sphp\DateTime\Intervals::fromString($data['duration']);
+    $task = new \Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask($period, $duration);
+    /*$birthDay = Holidays::birthday($data['dob'], $data['birthday']);
+    if (array_key_exists('flagday', $data)) {
+      $birthDay->setFlagDay($data['flagday']);
+    }
+    if (array_key_exists('dod', $data)) {
+      $birthDay->getPerson()->setDateOfDeath($data['dod']);
+    }*/
+    return $task;
+  }
+  
 
   public function createBirthday(array $data): BirthDay {
     $birthDay = Holidays::birthday($data['dob'], $data['birthday']);
