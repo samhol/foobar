@@ -16,6 +16,8 @@ use Sphp\DateTime\Time;
 use Sphp\DateTime\DateTime;
 use Sphp\DateTime\Duration;
 use Sphp\DateTime\ImmutableDuration;
+use Sphp\DateTime\Interval;
+use Sphp\DateTime\DateTimeInterface;
 
 /**
  * Description of RepeatingTask
@@ -27,14 +29,14 @@ use Sphp\DateTime\ImmutableDuration;
 class ATask extends AbstractLog implements Task {
 
   /**
-   * @var DateTime 
+   * @var DateTimeInterface 
    */
-  private $first;
+  private $start;
 
   /**
-   * @var Duration 
+   * @var Time 
    */
-  private $length;
+  private $end;
 
   /**
    * @var string 
@@ -42,13 +44,20 @@ class ATask extends AbstractLog implements Task {
   private $description;
 
   /**
-   * @var mixed
+   * @var Interval
    */
   private $data;
 
-  public function __construct(DateTime $first, \Sphp\DateTime\Interval $length, \Sphp\DateTime\Interval $constraint = null) {
+  /**
+   * Constructor
+   * 
+   * @param DateTimeInterface $start
+   * @param Interval $length
+   * @param DateConstraint $constraint
+   */
+  public function __construct(DateTimeInterface $start, Interval $length, DateConstraint $constraint = null) {
     parent::__construct($constraint);
-    $this->first = $first;
+    $this->start = $start;
     $this->length = $length;
   }
 
@@ -56,7 +65,7 @@ class ATask extends AbstractLog implements Task {
    * Destructor
    */
   public function __destruct() {
-    unset($this->first, $this->length, $this->data);
+    unset($this->start, $this->end, $this->data);
   }
 
   public function __toString(): string {
@@ -68,11 +77,6 @@ class ATask extends AbstractLog implements Task {
     
   }
 
-  public function getTasksForDay($date): array {
-
-    return [];
-  }
-
   /**
    * Returns the description text
    * 
@@ -82,8 +86,8 @@ class ATask extends AbstractLog implements Task {
     return "$this->description";
   }
 
-  public function getFirst() {
-    return $this->first;
+  public function getStart(): Time {
+    return $this->start;
   }
 
   public function getEnd(): Time {
