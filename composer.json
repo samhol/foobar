@@ -40,6 +40,13 @@
     "zendframework/zend-mail": "*",
     "symfony/yaml": ">=3.0"
   },
+  "require-dev": {
+    "phpunit/phpunit": ">=8",
+    "phpunit/php-code-coverage": "*",
+    "mockery/mockery": "@stable",
+    "eloquent/phony-phpunit": "*",
+    "mikey179/vfsstream": "~1"
+  },
   "autoload": {
     "psr-4": {
       "Sphp\\": "sphp/php/Sphp",
@@ -47,6 +54,11 @@
     },
     "psr-0": {
       "": "vendor/tovic/parsedown-extra-plugin"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sphp\\Tests\\": "sphp/php/tests/sphp"
     }
   }
 }

@@ -81,4 +81,5 @@ typings/
 composer.lock
 package-lock.json
 /samiholck/config/private/
+/reports/
 

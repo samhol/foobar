@@ -65,6 +65,10 @@ class SingleTask implements Task {
     $output = "{$this->getDescription()}: $this->start - $this->end";
     return $output;
   }
+  
+  public function getDuration(): \Sphp\DateTime\Interval {
+    return $this->start->diff($this->end);
+  }
 
   /**
    * 

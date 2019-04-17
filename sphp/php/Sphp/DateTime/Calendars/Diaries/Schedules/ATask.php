@@ -47,6 +47,7 @@ class ATask extends AbstractLog implements Task {
    * @var Interval
    */
   private $data;
+  private $duration;
 
   /**
    * Constructor
@@ -55,22 +56,26 @@ class ATask extends AbstractLog implements Task {
    * @param Interval $length
    * @param DateConstraint $constraint
    */
-  public function __construct(DateTimeInterface $start, Interval $length, DateConstraint $constraint = null) {
-    parent::__construct($constraint);
-    $this->start = $start;
-    $this->length = $length;
+  public function __construct(string $heading = null) {
+    $this->title = $heading;
+    parent::__construct();
   }
 
   /**
    * Destructor
    */
   public function __destruct() {
-    unset($this->start, $this->end, $this->data);
+    unset($this->duration);
   }
 
   public function __toString(): string {
     $output = "{$this->getDescription()}: $this->start - $this->end";
     return $output;
+  }
+
+  public function setDuration($duration) {
+    $this->duration = $duration;
+    return $this;
   }
 
   public function compareTo(Task $task): int {

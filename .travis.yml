@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 7.2
+# Cache composer packages
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+before_script:
+  - travis_retry composer install --no-interaction
+  - mkdir -p build/logs
+
+script:
+  - phpunit --verbose --bootstrap sphp/php/tests/bootstrap.php
+
+sudo: false

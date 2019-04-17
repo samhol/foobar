@@ -99,7 +99,7 @@ $workCalendar->insertLog($liucon);
   ->isBefore('2018-8-11')
   ->isNotOneOf('2018-7-19', '2018-7-20'); */
 //$workCalendar->insertLog($liucon1);
-$workCalendar->insertLog(new \Sphp\DateTime\Calendars\Diaries\Schedules\SingleTask('2018-5-20 11:00 EET', '2018-5-20 12:00 EET'));
+//$workCalendar->insertLog(new \Sphp\DateTime\Calendars\Diaries\Schedules\SingleTask('2018-5-20 11:00 EET', '2018-5-20 12:00 EET'));
 //var_dump($exercises instanceof \Sphp\DateTime\Calendars\Diaries\DiaryInterface);
 $diaryContainer = new \Sphp\DateTime\Calendars\Diaries\DiaryContainer();
 

@@ -1,11 +1,13 @@
 ## YAML Template.
 ---
+
+
 - task: Basketball at the School of Vaarniemi
-  first: 2018-1-1T20:30
+  start-time: 20:30
   duration: PT1H30M
-  period: R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M
+  national-holiday: Finland  
   rules:
-    weekdays: 1, 3
-    before: 2019-6-1
+    weekdays: [1, 3]
+    between: [2018-1-1, 2019-6-1]
     notBetween: [2018-6-1, 2018-8-25]
     notOneOf: [2018-4-30, 2018-5-1, 2018-12-6]
