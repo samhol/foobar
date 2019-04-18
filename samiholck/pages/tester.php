@@ -33,7 +33,7 @@ echo '<pre>';
 //var_dump($t->dateMatchesWith('now'));
 //print_r($task->getDuration());
 print_r($singleTask);
-print_r($singleTask->getDuration());
+var_dump($singleTask->getDuration()->toHours());
 print_r($task);
 /* $diary = new MutableDiary;
   $model = new Model();
