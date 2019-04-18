@@ -44,8 +44,7 @@
     "phpunit/phpunit": ">=8",
     "phpunit/php-code-coverage": "*",
     "mockery/mockery": "@stable",
-    "eloquent/phony-phpunit": "*",
-    "mikey179/vfsstream": "~1"
+    "eloquent/phony-phpunit": "*"
   },
   "autoload": {
     "psr-4": {

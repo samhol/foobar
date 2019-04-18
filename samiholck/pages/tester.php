@@ -6,6 +6,7 @@ use Sphp\DateTime\Calendars\Diaries\Holidays\Holidays;
 use Sphp\Samiholck\Calendar\Model;
 use Sphp\DateTime\Intervals;
 use Sphp\DateTime\Calendars\Diaries\Schedules\ATask;
+use Sphp\DateTime\Calendars\Diaries\Schedules\PeriodicTask;
 
 $data = Parser::fromFile('samiholck/calendar/data/tasks.yml');
 $task = [];
@@ -23,21 +24,20 @@ foreach (Parser::fromFile('samiholck/calendar/data/tasks.yml') as $data) {
         $t->dateRule()->isBetween($rules['between'][0], $rules['between'][1]);
       }
     }
-    var_dump($t->dateMatchesWith('now'));
+    // var_dump($t->dateMatchesWith('now'));
     $task[] = $t;
   }
 }
 $singleTask = new Sphp\DateTime\Calendars\Diaries\Schedules\SingleTask('2019-3-1', 'now');
 echo '<pre>';
-//$foo = new Sphp\DateTime\Interval('2007-03-01T13:00:00Z/P1Y2M10DT2H30M');
-//var_dump($t->dateMatchesWith('now'));
-//print_r($task->getDuration());
-print_r($singleTask);
-var_dump($singleTask->getDuration()->toHours());
-print_r($task);
-/* $diary = new MutableDiary;
-  $model = new Model();
-  //print_r($model->createTask($data[0]));
-  $model->parseFromYml('samiholck/calendar/data/birthdays.yml');
-  print_r($model); */
+
+$periodicTask = PeriodicTask::from('R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M', 'P1DT1H30M');
+$periodicTask->setDescription('Periodic task');
+var_dump($periodicTask->dateMatchesWith('2010-07-21 18:00.00'));
+var_dump($periodicTask->dateMatchesWith('2010-07-22 17:59.00'));
+foreach ($periodicTask->toArray() as $task) {
+  echo "\ntask: " . $task->getDescription();
+  echo "\n\tstart:\t" . $task->getStart()->format('Y-m-d H:i.s');
+  echo "\n\tend:\t" . $task->getEnd()->format('Y-m-d H:i.s');
+}
 echo '</pre>';
