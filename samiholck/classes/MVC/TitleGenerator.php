@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPHPlayground Framework (http://playgound.samiholck.com/)
  *
@@ -6,6 +7,7 @@
  * @copyright Copyright (c) 2007-2018 Sami Holck <sami.holck@gmail.com>
  * @license   https://opensource.org/licenses/MIT The MIT License
  */
+
 namespace Sphp\Samiholck\MVC;
 
 /**
@@ -28,7 +30,6 @@ class TitleGenerator {
       $title = (string) $this->titleData[$url];
     } else {
       $title = "'$url' | samiholck.com";
-      
     }
     return $title;
   }
