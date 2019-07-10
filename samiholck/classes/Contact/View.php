@@ -109,7 +109,7 @@ class View {
 
     $buttons = new ButtonGroup();
     $buttons->appendPushButton('<i class="fas fa-envelope"></i> Submit')->addCssClass('success', 'submitter');
-    $buttons->appendResetter('<i class="fas fa-undo-alt"></i> Reset')->addCssClass('alert');
+    //$buttons->appendResetter('<i class="fas fa-undo-alt"></i> Reset')->addCssClass('alert');
     $buttons->addCssClass('text-center');
 
     $buttonRow = new BasicRow();
