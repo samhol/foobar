@@ -50,3 +50,4 @@ $(window).bind("load", function () {
   manual.techLinksList();
 
 });
+  
